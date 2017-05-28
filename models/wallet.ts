@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb'
 
 
-enum CryptoCurrency {
+export enum CryptoCurrency {
     UNKNOWN = 0,
     BITCOIN = 1,
     ETHEREUM = 2
@@ -10,7 +10,7 @@ enum CryptoCurrency {
 
 
 
-abstract class Wallet {
+export abstract class Wallet {
 
     constructor(opts: WalletOptions) {
         this.name = opts.name
@@ -83,7 +83,7 @@ abstract class Wallet {
 /**
  * Wallet constructor options
  */
-class WalletOptions {
+export class WalletOptions {
     name: string
     labels: string[]
 }
@@ -96,5 +96,3 @@ const WALLET_TYPES_MAP = new Map<CryptoCurrency, Function>([
     [CryptoCurrency.BITCOIN, BitcoinWallet.fromJSON]
 ])
 
-
-export { Wallet, CryptoCurrency, WalletOptions }

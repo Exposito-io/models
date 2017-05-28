@@ -5,4 +5,4 @@ export * from './models/periodic-payment'
 export * from './models/fixed-payment'
 //export * from './models/'
 
-export * from './models/params'
+export * from './models/api-params'

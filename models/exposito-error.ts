@@ -1,4 +1,4 @@
-class ExpositoError extends Error {
+export class ExpositoError extends Error {
 
     code: ErrorCode
 
@@ -10,7 +10,7 @@ class ExpositoError extends Error {
 }
 
 
-enum ErrorCode {
+export enum ErrorCode {
     UNKNOWN = 0,
     INVALID_WALLET = 1
 }
@@ -20,4 +20,3 @@ const defaultErrorMessages = new Map<ErrorCode, string>([
     [ErrorCode.INVALID_WALLET, 'Invalid wallet']
 ])
 
-export { ExpositoError, ErrorCode }

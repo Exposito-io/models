@@ -6,7 +6,7 @@ import * as Money from 'js-money'
 
 
 
-class FixedPayment extends PeriodicPayment {
+export class FixedPayment extends PeriodicPayment {
 
     constructor(opts: FixedPaymentOptions) {
         super({
@@ -76,7 +76,7 @@ class FixedPayment extends PeriodicPayment {
 }
 
 
-class FixedPaymentOptions {
+export class FixedPaymentOptions {
     sourceWalletId: string | ObjectID
     destinationWalletId: string | ObjectID
     amount: Money
@@ -85,5 +85,3 @@ class FixedPaymentOptions {
 }
 
 
-
-export { FixedPayment, FixedPaymentOptions }

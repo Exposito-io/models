@@ -4,7 +4,7 @@ import * as Money from 'js-money'
 
 
 
-abstract class PeriodicPayment {
+export abstract class PeriodicPayment {
 
 
     constructor(opts: PeriodicPaymentOptions) {
@@ -93,14 +93,14 @@ abstract class PeriodicPayment {
 }
 
 
-class PeriodicPaymentOptions {
+export class PeriodicPaymentOptions {
     sourceWalletId: ObjectID|string
     destinationWalletId: ObjectID|string
     type: PeriodicPaymentType
     schedule: string
 }
 
-enum PeriodicPaymentType {
+export enum PeriodicPaymentType {
     UNKNOWN = 0,
     FIXED = 1,
     RESOURCE = 2
@@ -115,5 +115,3 @@ const PERIODIC_PAYMENT_CLASSES = [
     FixedPayment
 ]
 
-
-export { PeriodicPayment, PeriodicPaymentType, PeriodicPaymentOptions }

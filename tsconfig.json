@@ -4,23 +4,22 @@
         "rootDir": "./",
         "outDir": "./build/",
         "module": "commonjs",
-        "declaration": false,
+        "declaration": true,
         "noImplicitAny": false,
         "removeComments": true,
         "moduleResolution": "node",
-        "sourceMap": true,
-        "inlineSources": true,
-        "allowJs": true,
+        "sourceMap": false,
+        "inlineSources": false,
         "baseUrl": ".",
         "paths": {
             "*": ["*"]
         },
         "typeRoots": [
         ],
-        "types": ["chai", "mocha"]
+        "types": ["node", "chai", "mocha"]
     },
     "include": [
-        "bin/www.ts"
+        "index.ts"
     ],
     "exclude": [
         "node_modules"

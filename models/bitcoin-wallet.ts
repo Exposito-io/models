@@ -2,7 +2,7 @@ import { Wallet, CryptoCurrency, WalletOptions } from './wallet'
 //import { BitcoinCoreWallet } from './core/bitcoin-core-wallet'
 
 
-class BitcoinWallet extends Wallet {
+export class BitcoinWallet extends Wallet {
 
     protected coreWallet: any
 
@@ -60,9 +60,8 @@ class BitcoinWallet extends Wallet {
 }
 
 
-class BitcoinWalletOptions extends WalletOptions {
+export class BitcoinWalletOptions extends WalletOptions {
     coreWallet: any
 }
 
 
-export { BitcoinWallet }
