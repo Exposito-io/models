@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "rootDir": "./",
+        "outDir": "./build/",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "inlineSources": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": ["*"]
+        },
+        "typeRoots": [
+        ],
+        "types": ["chai", "mocha"]
+    },
+    "include": [
+        "bin/www.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
