@@ -7,24 +7,28 @@ import * as Money from 'js-money'
 export abstract class PeriodicPayment {
 
 
-    constructor(opts: PeriodicPaymentOptions) {
-        if (typeof opts.sourceWalletId === 'string')
-            opts.sourceWalletId = new ObjectID(opts.sourceWalletId)
+    constructor(opts?: PeriodicPaymentOptions) {
+        if (opts instanceof Object) {
+            // Validate PeriodicPaymentOptions
 
-        if (typeof opts.destinationWalletId === 'string')
-            opts.destinationWalletId = new ObjectID(opts.destinationWalletId)
+            if (typeof opts.sourceWalletId === 'string')
+                opts.sourceWalletId = new ObjectID(opts.sourceWalletId)
 
-        this._sourceWalletId = opts.sourceWalletId
-        this._destinationWalletId = opts.destinationWalletId
-        this.type = opts.type
-        this.schedule = opts.schedule
+            if (typeof opts.destinationWalletId === 'string')
+                opts.destinationWalletId = new ObjectID(opts.destinationWalletId)
+
+            this.sourceWalletId = opts.sourceWalletId
+            this.destinationWalletId = opts.destinationWalletId
+            this.type = opts.type
+            this.schedule = opts.schedule
+        }
     }
 
     getId() { return this._id }
-    getSourceWalletId() { return this._sourceWalletId }
+    getSourceWalletId() { return this.sourceWalletId }
     getSourceWallet() { return this.sourceWallet }
 
-    getDestinationWalletId() { return this._destinationWalletId }
+    getDestinationWalletId() { return this.destinationWalletId }
     getDestinationWallet() { return this.destinationWallet }
 
     getSchedule() { return this.schedule }
@@ -50,8 +54,8 @@ export abstract class PeriodicPayment {
 
 
     protected _id: ObjectID
-    protected _sourceWalletId: ObjectID
-    protected _destinationWalletId: ObjectID
+    protected sourceWalletId: ObjectID
+    protected destinationWalletId: ObjectID
 
     protected sourceWallet: Wallet
     protected destinationWallet: Wallet
@@ -98,6 +102,11 @@ export class PeriodicPaymentOptions {
     destinationWalletId: ObjectID|string
     type: PeriodicPaymentType
     schedule: string
+
+    // TODO: complete
+    static validate(opts: PeriodicPaymentOptions) {
+        return true
+    }
 }
 
 export enum PeriodicPaymentType {
