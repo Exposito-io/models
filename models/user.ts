@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb'
 
 
-class User {
+export class User {
 
     _id: String|ObjectID
 
@@ -15,6 +15,3 @@ class User {
     }
 }
 
-
-
-export default User

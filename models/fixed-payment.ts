@@ -1,3 +1,5 @@
+
+
 import { PeriodicPayment, PeriodicPaymentType, PeriodicPaymentOptions } from './periodic-payment'
 import { Wallet } from './wallet'
 import * as tools from '../lib/tools'
@@ -16,7 +18,7 @@ export class FixedPayment extends PeriodicPayment {
     amount: Money
 
     constructor() {
-            super()
+        super()
     }
 
 
@@ -45,7 +47,8 @@ export class FixedPayment extends PeriodicPayment {
             periodicPayment.schedule = opts.schedule
             periodicPayment.type = PeriodicPaymentType.FIXED
             
-            periodicPayment.amount = opts.amount
+            //periodicPayment.amount = Money. opts.amount
+            periodicPayment.amount = Money.fromDecimal(opts.amount, opts.currency)
             periodicPayment.schedule = opts.schedule
 
             return periodicPayment
@@ -58,6 +61,8 @@ export class FixedPayment extends PeriodicPayment {
 
         let fixedPayment = new FixedPayment()
         Object.assign(fixedPayment, json)
+
+        fixedPayment.amount = Money.fromDecimal(json.amount.amount, json.amount.currency)
 
         return fixedPayment
 
@@ -88,6 +93,16 @@ export class FixedPaymentOptions {
 
         // Number.valueOf is more strict thant parseFloat
         opts.amount = new Number(opts.amount).valueOf()
+
+        if (typeof opts.currency === 'string')
+            opts.currency = opts.currency.toUpperCase()
+
+        // Validate amount/currency
+        try {
+            let validMoney = Money.fromDecimal(opts.amount, opts.currency)
+        } catch(e) {
+            return false
+        }
 
         return tools.validateObjectId(opts.sourceWalletId)
             && tools.validateObjectId(opts.destinationWalletId)
