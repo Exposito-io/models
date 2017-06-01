@@ -14,9 +14,6 @@ export abstract class PeriodicPayment {
             if (typeof opts.sourceWalletId === 'string')
                 opts.sourceWalletId = new ObjectID(opts.sourceWalletId)
 
-            if (typeof opts.destinationWalletId === 'string')
-                opts.destinationWalletId = new ObjectID(opts.destinationWalletId)
-
             this.sourceWalletId = opts.sourceWalletId
             this.destinationWalletId = opts.destinationWalletId
             this.type = opts.type
@@ -55,7 +52,7 @@ export abstract class PeriodicPayment {
 
     protected _id: ObjectID
     public sourceWalletId: ObjectID
-    public destinationWalletId: ObjectID
+    public destinationWalletId: string
 
     public sourceWallet: Wallet
     public destinationWallet: Wallet
@@ -89,7 +86,9 @@ export abstract class PeriodicPayment {
         if (periodicPaymentClass == null)
             throw('Invalid JSON')
 
-        let periodicPayment = Object.assign(Object.create(PeriodicPayment.prototype), json, periodicPaymentClass.fromJSON(json))
+        let periodicPayment = periodicPaymentClass.fromJSON(json)
+        periodicPayment.sourceWalletId = new ObjectID(periodicPayment.sourceWalletId)
+
         return periodicPayment
 
     }
@@ -99,7 +98,7 @@ export abstract class PeriodicPayment {
 
 export class PeriodicPaymentOptions {
     sourceWalletId: ObjectID|string
-    destinationWalletId: ObjectID|string
+    destinationWalletId: string
     type: PeriodicPaymentType
     schedule: string
 

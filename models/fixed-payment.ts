@@ -43,7 +43,7 @@ export class FixedPayment extends PeriodicPayment {
             let periodicPayment = new FixedPayment()
             
             periodicPayment.sourceWalletId = new ObjectID(opts.sourceWalletId)
-            periodicPayment.destinationWalletId = new ObjectID(opts.destinationWalletId)
+            periodicPayment.destinationWalletId = opts.destinationWalletId
             periodicPayment.schedule = opts.schedule
             periodicPayment.type = PeriodicPaymentType.FIXED
             
@@ -105,7 +105,7 @@ export class FixedPaymentOptions {
         }
 
         return tools.validateObjectId(opts.sourceWalletId)
-            && tools.validateObjectId(opts.destinationWalletId)
+            //&& tools.validateObjectId(opts.destinationWalletId)
             && !isNaN(opts.amount)
     }
 }
