@@ -1,10 +1,27 @@
 import { ObjectID } from 'mongodb'
 import { Wallet, CryptoCurrency } from './wallet'
+import { PeriodicPaymentDestinationType } from './periodic-payment-destination'
 import * as Money from 'js-money'
 
 
 
 export abstract class PeriodicPayment {
+
+    public _id: ObjectID
+    public sourceWalletId: ObjectID
+    public destinationWalletId: string
+
+    public destination: string
+    public destinationType: PeriodicPaymentDestinationType
+
+    public sourceWallet: Wallet
+
+    public type: PeriodicPaymentType
+    public cryptoCurrency: CryptoCurrency
+    public schedule: string
+
+    public isPaused: boolean
+    public isDeleted: boolean
 
 
     constructor(opts?: PeriodicPaymentOptions) {
@@ -20,18 +37,6 @@ export abstract class PeriodicPayment {
             this.schedule = opts.schedule
         }
     }
-
-    getId() { return this._id }
-    getSourceWalletId() { return this.sourceWalletId }
-    getSourceWallet() { return this.sourceWallet }
-
-    getDestinationWalletId() { return this.destinationWalletId }
-    getDestinationWallet() { return this.destinationWallet }
-
-    getSchedule() { return this.schedule }
-
-    isPaused() { return this.paused }
-    isDeleted() { return this.deleted }
 
 
     getNextPaymentTime() {
@@ -50,38 +55,10 @@ export abstract class PeriodicPayment {
     abstract getPaymentAmount(): Money
 
 
-    protected _id: ObjectID
-    public sourceWalletId: ObjectID
-    public destinationWalletId: string
 
-    public sourceWallet: Wallet
-    public destinationWallet: Wallet
-    public type: PeriodicPaymentType
-    public cryptoCurrency: CryptoCurrency
-    public schedule: string
-
-
-    protected paused: boolean
-    protected deleted: boolean
-
-    static isValidJSON(json: any): boolean {
-        if (!(json instanceof Object))
-            return false
-
-        // Full object validation
-        if (json._id) {
-            // TODO
-            return true
-        }
-        // Partial object validation
-        else {
-            // TODO
-            return true
-        }
-    }
 
     static fromJSON(json: Object): PeriodicPayment {
-        let periodicPaymentClass = PERIODIC_PAYMENT_CLASSES.find(p => p.isValidJSON(json) && PeriodicPayment.isValidJSON(json))
+        let periodicPaymentClass = PERIODIC_PAYMENT_CLASSES.find(p => p.isValidJSON(json))
 
         if (periodicPaymentClass == null)
             throw('Invalid JSON')
@@ -92,6 +69,7 @@ export abstract class PeriodicPayment {
         return periodicPayment
 
     }
+
 
 }
 

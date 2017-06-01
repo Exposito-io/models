@@ -1,6 +1,7 @@
 
 
 import { PeriodicPayment, PeriodicPaymentType, PeriodicPaymentOptions } from './periodic-payment'
+import { PeriodicPaymentDestinationType } from './periodic-payment-destination'
 import { Wallet } from './wallet'
 import * as tools from '../lib/tools'
 import { ExpositoError, ErrorCode } from './exposito-error'
@@ -34,7 +35,7 @@ export class FixedPayment extends PeriodicPayment {
     }
 
 
-
+    
 
     // TODO: Find another name
     static fromOptions(opts: FixedPaymentOptions) {
@@ -43,7 +44,8 @@ export class FixedPayment extends PeriodicPayment {
             let periodicPayment = new FixedPayment()
             
             periodicPayment.sourceWalletId = new ObjectID(opts.sourceWalletId)
-            periodicPayment.destinationWalletId = opts.destinationWalletId
+            periodicPayment.destination = opts.destination
+            periodicPayment.destinationType = opts.destinationType
             periodicPayment.schedule = opts.schedule
             periodicPayment.type = PeriodicPaymentType.FIXED
             
@@ -55,6 +57,10 @@ export class FixedPayment extends PeriodicPayment {
         }    
         else
             throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)    
+    }
+
+    static isValidJSON(json: any) {
+        return json.type === PeriodicPaymentType.FIXED
     }
 
     static fromJSON(json: any): FixedPayment {
@@ -73,7 +79,8 @@ export class FixedPayment extends PeriodicPayment {
 
 export class FixedPaymentOptions {
     sourceWalletId: string
-    destinationWalletId: string
+    destination: string
+    destinationType: PeriodicPaymentDestinationType
     amount: number
     currency: string
     schedule: string
@@ -90,6 +97,7 @@ export class FixedPaymentOptions {
      */
     static validate(opts: FixedPaymentOptions) {
         // TODO: Validate currency, schedule, isPaused
+        // TODO: Validate destination type
 
         // Number.valueOf is more strict thant parseFloat
         opts.amount = new Number(opts.amount).valueOf()

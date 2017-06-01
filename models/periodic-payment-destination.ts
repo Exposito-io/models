@@ -6,6 +6,7 @@
  * of those possible destinations
  */
 export class PeriodicPaymentDestination {
+    destination: string
     type: PeriodicPaymentDestinationType
 }
 
