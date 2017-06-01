@@ -45,18 +45,18 @@ export abstract class Wallet {
 
 
     static fromJSON(json: any): Wallet {
-        if (Wallet.isJsonWalletValid(json)) {
-            let wallet = WALLET_TYPES_MAP.get(json.type)(json)
+        //if (Wallet.isJsonWalletValid(json)) {
+        let wallet = WALLET_TYPES_MAP.get(json.type)(json)
 
-            wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
-            wallet.type = <CryptoCurrency>json.type
-            wallet.name = json.name
-            wallet.labels = new Set(json.labels)
-            wallet._userId = json._userId
-            wallet._periodicPaymentIds = json._periodicPaymentIds
+        wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
+        wallet.type = <CryptoCurrency>json.type
+        wallet.name = json.name
+        wallet.labels = new Set(json.labels)
+        wallet._userId = json._userId
+        wallet._periodicPaymentIds = json._periodicPaymentIds
 
-            return wallet
-        }
+        return wallet
+        //}
     }
 
 

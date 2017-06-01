@@ -62,7 +62,7 @@ export class FixedPayment extends PeriodicPayment {
         let fixedPayment = new FixedPayment()
         Object.assign(fixedPayment, json)
 
-        fixedPayment.amount = Money.fromDecimal(json.amount.amount, json.amount.currency)
+        fixedPayment.amount = new Money(json.amount.amount, json.amount.currency)
 
         return fixedPayment
 

@@ -54,14 +54,14 @@ export abstract class PeriodicPayment {
 
 
     protected _id: ObjectID
-    protected sourceWalletId: ObjectID
-    protected destinationWalletId: ObjectID
+    public sourceWalletId: ObjectID
+    public destinationWalletId: ObjectID
 
-    protected sourceWallet: Wallet
-    protected destinationWallet: Wallet
-    protected type: PeriodicPaymentType
-    protected cryptoCurrency: CryptoCurrency
-    protected schedule: string
+    public sourceWallet: Wallet
+    public destinationWallet: Wallet
+    public type: PeriodicPaymentType
+    public cryptoCurrency: CryptoCurrency
+    public schedule: string
 
 
     protected paused: boolean
@@ -89,7 +89,7 @@ export abstract class PeriodicPayment {
         if (periodicPaymentClass == null)
             throw('Invalid JSON')
 
-        let periodicPayment = Object.assign({}, json, periodicPaymentClass.fromJSON(json))
+        let periodicPayment = Object.assign(Object.create(PeriodicPayment.prototype), json, periodicPaymentClass.fromJSON(json))
         return periodicPayment
 
     }

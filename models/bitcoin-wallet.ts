@@ -36,9 +36,6 @@ export class BitcoinWallet extends Wallet {
 
 
     static fromJSON(json: any): BitcoinWallet {
-        if (!BitcoinWallet.isJsonWalletValid(json))
-            throw('Invalid wallet JSON')
-
  
         let bitcoinWallet = new BitcoinWallet({
             name: json.name,
