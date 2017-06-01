@@ -1,7 +1,7 @@
 
 
 import { PeriodicPayment, PeriodicPaymentType, PeriodicPaymentOptions } from './periodic-payment'
-import { PeriodicPaymentDestinationType } from './periodic-payment-destination'
+import { PaymentDestination } from './payment-destination'
 import { Wallet } from './wallet'
 import * as tools from '../lib/tools'
 import { ExpositoError, ErrorCode } from './exposito-error'
@@ -80,7 +80,7 @@ export class FixedPayment extends PeriodicPayment {
 export class FixedPaymentOptions {
     sourceWalletId: string
     destination: string
-    destinationType: PeriodicPaymentDestinationType
+    destinationType: PaymentDestination
     amount: number
     currency: string
     schedule: string

@@ -1,6 +1,6 @@
 import { ObjectID } from 'mongodb'
 import { Wallet, CryptoCurrency } from './wallet'
-import { PeriodicPaymentDestinationType } from './periodic-payment-destination'
+import { PaymentDestination } from './payment-destination'
 import * as Money from 'js-money'
 
 
@@ -12,7 +12,7 @@ export abstract class PeriodicPayment {
     public destinationWalletId: string
 
     public destination: string
-    public destinationType: PeriodicPaymentDestinationType
+    public destinationType: PaymentDestination
 
     public sourceWallet: Wallet
 
