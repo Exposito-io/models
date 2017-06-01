@@ -4,6 +4,7 @@ export * from './models/bitcoin-wallet'
 export * from './models/money'
 export * from './models/periodic-payment'
 export * from './models/fixed-payment'
+export * from './models/periodic-payment-destination'
 export * from './models/user'
 
 export * from './models/api-params'
