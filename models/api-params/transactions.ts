@@ -4,6 +4,6 @@ export class CreatePaymentRequest {
     sourceWalletId: string
     destination: string
     destinationType: PaymentDestination
-    amount: number
+    amount: string
     currency: string
 }
