@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb'
 import { Wallet, CryptoCurrency } from './wallet'
 import { PaymentDestination } from './payment-destination'
-import * as Money from 'js-money'
+import { Money, Currency } from 'ts-money'
 
 
 

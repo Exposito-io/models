@@ -6,7 +6,7 @@ import { Wallet } from './wallet'
 import * as tools from '../lib/tools'
 import { ExpositoError, ErrorCode } from './exposito-error'
 import { ObjectID } from 'mongodb'
-import * as Money from 'js-money'
+import { Money, Currency } from 'ts-money'
 
 
 

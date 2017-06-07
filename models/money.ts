@@ -1,8 +1,8 @@
 
-import * as JsMoney from 'js-money'
+import { Money as TsMoney } from 'ts-money'
 
 
-export class Money extends JsMoney {
+export class Money extends TsMoney {
     
 }
 

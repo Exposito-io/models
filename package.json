@@ -19,7 +19,6 @@
   "author": "Mathew Cormier",
   "license": "MIT",
   "dependencies": {
-    "js-money": "^0.6.3",
     "mongodb": "^2.2.27"
   }
 }
