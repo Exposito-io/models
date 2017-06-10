@@ -9,7 +9,11 @@ export class Money extends TsMoney {
      * Millibitcoins (mBTC) or satoshis
      */
     isBitcoin(): boolean {
-        return BitcoinCurrencies.includes(this.currency)
+        return Money.isBitcoin(this.currency)
+    }
+
+    static isBitcoin(currency: string) {
+        return BitcoinCurrencies.includes(currency.toUpperCase())
     }
 }
 
