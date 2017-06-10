@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb'
 
 
-export enum CryptoCurrency {
+export enum WalletType {
     UNKNOWN = 0,
     BITCOIN = 1,
     ETHEREUM = 2
@@ -49,7 +49,7 @@ export abstract class Wallet {
         let wallet = WALLET_TYPES_MAP.get(json.type)(json)
 
         wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
-        wallet.type = <CryptoCurrency>json.type
+        wallet.type = <WalletType>json.type
         wallet.name = json.name
         wallet.labels = new Set(json.labels)
         wallet._userId = json._userId
@@ -74,7 +74,7 @@ export abstract class Wallet {
     protected _id: ObjectID
     protected _userId: ObjectID
     protected _periodicPaymentIds: ObjectID[] = []
-    protected type: CryptoCurrency = CryptoCurrency.UNKNOWN
+    protected type: WalletType = WalletType.UNKNOWN
     protected name: string
     protected labels: Set<string> = new Set<string>()
 
@@ -92,7 +92,7 @@ export class WalletOptions {
 
 import { BitcoinWallet } from './bitcoin-wallet'
 
-const WALLET_TYPES_MAP = new Map<CryptoCurrency, Function>([
-    [CryptoCurrency.BITCOIN, BitcoinWallet.fromJSON]
+const WALLET_TYPES_MAP = new Map<WalletType, Function>([
+    [WalletType.BITCOIN, BitcoinWallet.fromJSON]
 ])
 

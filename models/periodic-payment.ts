@@ -1,5 +1,5 @@
 import { ObjectID } from 'mongodb'
-import { Wallet, CryptoCurrency } from './wallet'
+import { Wallet, WalletType } from './wallet'
 import { PaymentDestination } from './payment-destination'
 import { Money, Currency } from 'ts-money'
 
@@ -17,7 +17,6 @@ export abstract class PeriodicPayment {
     public sourceWallet: Wallet
 
     public type: PeriodicPaymentType
-    public cryptoCurrency: CryptoCurrency
     public schedule: string
 
     public isPaused: boolean

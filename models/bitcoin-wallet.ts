@@ -1,4 +1,4 @@
-import { Wallet, CryptoCurrency, WalletOptions } from './wallet'
+import { Wallet, WalletType, WalletOptions } from './wallet'
 //import { BitcoinCoreWallet } from './core/bitcoin-core-wallet'
 
 
@@ -10,7 +10,7 @@ export class BitcoinWallet extends Wallet {
         super(opts)
 
         this.coreWallet = opts.coreWallet
-        this.type = CryptoCurrency.BITCOIN
+        this.type = WalletType.BITCOIN
     }
 
     getCoreWallet() { return this.coreWallet }

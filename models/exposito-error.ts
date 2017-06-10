@@ -13,12 +13,14 @@ export class ExpositoError extends Error {
 export enum ErrorCode {
     UNKNOWN = 0,
     INVALID_WALLET = 1,
-    INVALID_PERIODIC_PAYMENT_OPTS = 2
+    INVALID_PERIODIC_PAYMENT_OPTS = 2,
+    UNKNOWN_PAYMENT_REQUEST = 3
 }
 
 const defaultErrorMessages = new Map<ErrorCode, string>([
     [ErrorCode.UNKNOWN, 'Unknown error'],
     [ErrorCode.INVALID_WALLET, 'Invalid wallet'],
-    [ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS, 'Invalid PeriodicPaymentOptions object']
+    [ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS, 'Invalid PeriodicPaymentOptions object'],
+    [ErrorCode.UNKNOWN_PAYMENT_REQUEST, 'Unknown payment request']
 ])
 

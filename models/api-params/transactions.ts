@@ -6,4 +6,5 @@ export class CreatePaymentRequest {
     destinationType: PaymentDestination
     amount: string
     currency: string
+    note: string
 }
