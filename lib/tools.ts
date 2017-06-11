@@ -10,3 +10,14 @@ export function validateObjectId(id: string): boolean {
     return typeof id === 'string'
         && regex.test(id)
 }
+
+export function convertStringToEnum<T>(enumString: string): number {
+    return new Number(enumString).valueOf()
+}
+
+export function validateEnum(enumToValidate, enumDef): boolean {
+    if (typeof enumToValidate === 'string')
+        enumToValidate = convertStringToEnum(enumToValidate)
+
+    return enumToValidate in enumDef   
+}
