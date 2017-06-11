@@ -3,7 +3,7 @@ import { Money as TsMoney, Currencies, Currency, Rounding, RoundingMode } from '
 
 
 export class Money extends TsMoney {
-    
+
 
 
     /**
@@ -37,19 +37,19 @@ export class Money extends TsMoney {
 
 
     static fromInteger(amount: number | any, currency?: string): Money {
-        return Object.assign(Object.create(Money), TsMoney.fromInteger(amount, currency))
+        return Object.assign(Object.create(Money.prototype), TsMoney.fromInteger(amount, currency))
         // TODO: Object.freeze ?
     }
 
     static fromDecimal(amount: number | any, currency: string | any, rounder?: RoundingMode): Money {
-        return Object.assign(Object.create(Money), TsMoney.fromDecimal(amount, currency, rounder))
+        return Object.assign(Object.create(Money.prototype), TsMoney.fromDecimal(amount, currency, rounder))
         // TODO: Object.freeze ?
     }
 
     static fromStringDecimal(amount: string | any, currency: string | Currency | RoundingMode, rounding?: RoundingMode): Money {
-        return Object.assign(Object.create(Money), TsMoney.fromStringDecimal(amount, currency, rounding))
+        return Object.assign(Object.create(Money.prototype), TsMoney.fromStringDecimal(amount, currency, rounding))
         // TODO: Object.freeze ?
-    }    
+    }
 }
 
 Currencies['satoshi'] = {
@@ -69,7 +69,7 @@ Currencies['mBTC'] = {
     "decimal_digits": 5,
     "rounding": 0,
     "code": "mBTC",
-    "name_plural": "Millibitcoins"    
+    "name_plural": "Millibitcoins"
 }
 
 
