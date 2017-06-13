@@ -1,7 +1,11 @@
 import { ObjectID } from 'mongodb'
 import { Wallet, WalletType } from './wallet'
 import { PaymentDestination } from './payment-destination'
-import { Money, Currency } from 'ts-money'
+import { DestinationOptions } from './destination-options'
+import { Money, Currency } from './money'
+import { ValidationResults } from './validation-results'
+import { ExpositoError, ErrorCode } from './exposito-error'
+
 
 
 
@@ -9,12 +13,14 @@ export abstract class PeriodicPayment {
 
     public _id: ObjectID
     public sourceWalletId: ObjectID
-    public destinationWalletId: string
 
-    public destination: string
+    public destination: string | DestinationOptions[]
     public destinationType: PaymentDestination
 
-    public sourceWallet: Wallet
+    public amount?: string
+    public amountFunction?: string
+    public amountFunctionFile: string    
+
 
     public type: PeriodicPaymentType
     public schedule: string
@@ -22,6 +28,7 @@ export abstract class PeriodicPayment {
     public isPaused: boolean
     public isDeleted: boolean
 
+    public sourceWallet: Wallet
 
     constructor(opts?: PeriodicPaymentOptions) {
         if (opts instanceof Object) {
@@ -54,6 +61,13 @@ export abstract class PeriodicPayment {
     abstract getPaymentAmount(): Money
 
 
+    static fromOptions(opts: PeriodicPaymentOptions) {
+        if (PeriodicPaymentOptions.validate(opts)) {
+
+        }
+        else
+            throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)
+    }
 
 
     static fromJSON(json: Object): PeriodicPayment {
@@ -73,22 +87,43 @@ export abstract class PeriodicPayment {
 }
 
 
+
+
+
 export class PeriodicPaymentOptions {
-    sourceWalletId: ObjectID|string
-    destinationWalletId: string
-    type: PeriodicPaymentType
+
     schedule: string
+    sourceWalletId?: string
+
+    destination: string | DestinationOptions[]
+    destinationType?: PaymentDestination
+
+    amount?: string
+    amountFunction?: string
+    amountFunctionFile: string
+
+    currency?: string
+    payments?: PeriodicPaymentOptions[]
 
     // TODO: complete
-    static validate(opts: PeriodicPaymentOptions) {
-        return true
+    static validate(opts: PeriodicPaymentOptions): ValidationResults {
+        if (!this.validateSchedule(opts.schedule))
+            return { isValid: false, message: 'Invalid schedule' }
+
+        //if (opts.sourceWalletId == undefined && )
+        return { isValid: true }
+    }
+
+    private static validateSchedule(schedule: string) {
+        return typeof schedule === 'string'
     }
 }
 
 export enum PeriodicPaymentType {
     UNKNOWN = 0,
     FIXED = 1,
-    RESOURCE = 2
+    RESOURCE = 2,
+    GROUP = 3
 }
 
 
