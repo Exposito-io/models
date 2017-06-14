@@ -87,6 +87,9 @@ export class PeriodicPayment {
     }
 
 
+    hasFixedAmount(): boolean {
+        return this.amount != null && this.currency != null
+    }
 
     static fromJSON(json: any): PeriodicPayment {
 
@@ -132,7 +135,7 @@ export class PeriodicPaymentOptions {
     currency?: string
 
     amountFunction?: string
-    amountFunctionFile: string
+    amountFunctionFile?: string
 
     payments?: PeriodicPaymentOptions[]
 
@@ -163,7 +166,7 @@ export enum PeriodicPaymentType {
     GROUP = 3
 }
 
-
+export { DestinationOptions }
 
 import { FixedPayment } from './fixed-payment'
 
