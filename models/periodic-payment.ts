@@ -9,39 +9,58 @@ import { ExpositoError, ErrorCode } from './exposito-error'
 
 
 
-export abstract class PeriodicPayment {
+export class PeriodicPayment {
 
     public _id: ObjectID
+
+    public schedule: string
     public sourceWalletId: ObjectID
 
     public destination: string | DestinationOptions[]
     public destinationType: PaymentDestination
 
     public amount?: string
+    public currency?: string
+
     public amountFunction?: string
     public amountFunctionFile: string    
 
-
-    public type: PeriodicPaymentType
-    public schedule: string
+    public payments?: IntraPeriodicPayment[]
 
     public isPaused: boolean
     public isDeleted: boolean
 
-    public sourceWallet: Wallet
+
+    public sourceWallet?: Wallet
+
 
     constructor(opts?: PeriodicPaymentOptions) {
         if (opts instanceof Object) {
-            // Validate PeriodicPaymentOptions
+            let validation = PeriodicPaymentOptions.validate(opts)
 
-            if (typeof opts.sourceWalletId === 'string')
-                opts.sourceWalletId = new ObjectID(opts.sourceWalletId)
+            if (!validation.isValid)
+                throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS, validation.message)
 
-            this.sourceWalletId = opts.sourceWalletId
-            this.destinationWalletId = opts.destinationWalletId
-            this.type = opts.type
             this.schedule = opts.schedule
+            this.sourceWalletId = new ObjectID(opts.sourceWalletId)
+
+            this.destination = opts.destination
+            this.destinationType = opts.destinationType
+
+            this.amount = opts.amount
+            this.currency = opts.currency
+
+            this.amountFunction = opts.amountFunction
+            this.amountFunctionFile = opts.amountFunctionFile
+
+            if (opts.payments)
+                this.payments = opts.payments.map(payment => new IntraPeriodicPayment)
+
+            this.isPaused = opts.isPaused
         }
+        else if (opts !== undefined)
+            throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)
+
     }
 
 
@@ -53,37 +72,45 @@ export abstract class PeriodicPayment {
      * Returns an estimate of the next payment 
      * amount
      */
-    abstract getNextPaymentEstimateAmount(): Money
+    getNextPaymentEstimateAmount(): Money {
+        throw 'Not implemented'
+    }
 
     /**
      * Returns the current payment amount
      */
-    abstract getPaymentAmount(): Money
-
-
-    static fromOptions(opts: PeriodicPaymentOptions) {
-        if (PeriodicPaymentOptions.validate(opts)) {
-
-        }
-        else
-            throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)
+    getPaymentAmount(): Money {
+        throw 'Not implemented'
     }
 
 
-    static fromJSON(json: Object): PeriodicPayment {
-        let periodicPaymentClass = PERIODIC_PAYMENT_CLASSES.find(p => p.isValidJSON(json))
 
-        if (periodicPaymentClass == null)
-            throw('Invalid JSON')
+    static fromJSON(json: any): PeriodicPayment {
 
-        let periodicPayment = periodicPaymentClass.fromJSON(json)
+        let periodicPayment = new PeriodicPayment()
+        Object.assign(periodicPayment, json)
+
         periodicPayment.sourceWalletId = new ObjectID(periodicPayment.sourceWalletId)
+
+        if (json.periodicPayments)
+            periodicPayment.payments = json.periodicPayments.map(pp => PeriodicPayment.fromJSON(pp)) 
 
         return periodicPayment
 
     }
 
 
+}
+
+
+
+export class IntraPeriodicPayment extends PeriodicPayment {
+    constructor(opts?: PeriodicPaymentOptions) {
+        super(opts)
+
+        this.isPaused = false
+        this.isDeleted = false
+    }
 }
 
 
@@ -99,16 +126,23 @@ export class PeriodicPaymentOptions {
     destinationType?: PaymentDestination
 
     amount?: string
+    currency?: string
+
     amountFunction?: string
     amountFunctionFile: string
 
-    currency?: string
     payments?: PeriodicPaymentOptions[]
+
+    isPaused?: boolean
 
     // TODO: complete
     static validate(opts: PeriodicPaymentOptions): ValidationResults {
         if (!this.validateSchedule(opts.schedule))
             return { isValid: false, message: 'Invalid schedule' }
+
+        if (!(typeof opts === 'boolean'))
+            opts.isPaused = false
+            
 
         //if (opts.sourceWalletId == undefined && )
         return { isValid: true }
