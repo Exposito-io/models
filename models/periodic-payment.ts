@@ -27,8 +27,8 @@ export class PeriodicPayment {
 
     public payments?: IntraPeriodicPayment[]
 
-    public isPaused: boolean
-    public isDeleted: boolean
+    public isPaused: boolean = false
+    public isDeleted: boolean = false
 
 
     public sourceWallet?: Wallet
@@ -57,6 +57,9 @@ export class PeriodicPayment {
                 this.payments = opts.payments.map(payment => new IntraPeriodicPayment)
 
             this.isPaused = opts.isPaused
+
+            // Cleanup undefined attributes to prevent mongo from saving them
+            Object.keys(this).forEach((key) => (this[key] == undefined) && delete this[key])
         }
         else if (opts !== undefined)
             throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)
