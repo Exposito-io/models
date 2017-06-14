@@ -16,23 +16,16 @@ import { Money } from './money'
  */
 export class FixedPayment extends PeriodicPayment {
 
-    amount: Money
+    
 
     constructor() {
         super()
     }
 
 
-    getAmount() { return this.amount }
+    getAmount() { return '' }
 
 
-    getPaymentAmount() {
-        return this.amount
-    }
-
-    getNextPaymentEstimateAmount() {
-        return this.amount
-    }
 
 
     
@@ -47,10 +40,9 @@ export class FixedPayment extends PeriodicPayment {
             periodicPayment.destination = opts.destination
             periodicPayment.destinationType = opts.destinationType
             periodicPayment.schedule = opts.schedule
-            periodicPayment.type = PeriodicPaymentType.FIXED
             
             //periodicPayment.amount = Money. opts.amount
-            periodicPayment.amount = Money.fromDecimal(opts.amount, opts.currency)
+            //periodicPayment.amount = Money.fromDecimal(opts.amount, opts.currency)
             periodicPayment.schedule = opts.schedule
 
             return periodicPayment
@@ -68,7 +60,7 @@ export class FixedPayment extends PeriodicPayment {
         let fixedPayment = new FixedPayment()
         Object.assign(fixedPayment, json)
 
-        fixedPayment.amount = Money.fromStringDecimal(json.amount.decimalAmount, json.amount.currency)
+        //fixedPayment.amount = Money.fromStringDecimal(json.amount.decimalAmount, json.amount.currency)
 
         return fixedPayment
 
