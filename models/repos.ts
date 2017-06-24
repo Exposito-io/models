@@ -10,5 +10,5 @@ export class RepoAuthor {
     email: string
     linesOfCode: string
     fileCount: string
-    availablePaymentMethods: any[]
+    availablePaymentMethods: { paymentType: any, destination: string }[]
 }

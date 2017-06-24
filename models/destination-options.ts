@@ -1,7 +1,8 @@
 import { PaymentDestination } from './payment-destination'
+import { GithubProjects } from './api-params/github-projects'
 
 export class DestinationOptions {
-    destination: string | DestinationOptions[]
+    destination: string | DestinationOptions[] | GithubProjects
 
     /**
      * Used in an array of DestinationOptions object
@@ -28,4 +29,25 @@ export class DestinationOptions {
      */
     shares?: number
     destinationType?: PaymentDestination
+
+    static fromJSON(json: any) {
+        if (typeof json.destination === 'string')
+            return json
+        else if (json.destination instanceof Array) {
+            return {
+                destination: json.destination.map(DestinationOptions.fromJSON)
+            }
+        }
+        else if (json.destination.githubProjects) {
+            return {
+                destination: new GithubProjects(json.destination)
+            }
+        }
+        else
+            throw('Invalid DestinationOptions')
+    }
+
+    static validate(dest: any) {
+        // TODO
+    }
 }

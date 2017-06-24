@@ -5,6 +5,7 @@ import { DestinationOptions } from './destination-options'
 import { Money, Currency } from './money'
 import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
+import { GithubProjects } from './api-params/github-projects'
 
 
 
@@ -16,14 +17,14 @@ export class PeriodicPayment {
     public schedule: string
     public sourceWalletId: ObjectID
 
-    public destination: string | DestinationOptions[]
+    public destination: string | DestinationOptions[] | GithubProjects
     public destinationType: PaymentDestination
 
     public amount?: string
     public currency?: string
 
     public amountFunction?: string
-    public amountFunctionFile: string    
+    public amountFunctionFile: string
 
     public payments?: IntraPeriodicPayment[]
 
@@ -44,8 +45,13 @@ export class PeriodicPayment {
             this.schedule = opts.schedule
             this.sourceWalletId = new ObjectID(opts.sourceWalletId)
 
-            this.destination = opts.destination
-            this.destinationType = opts.destinationType
+            let destination = DestinationOptions.fromJSON({ 
+                destination: opts.destination,
+                destinationType: opts.destinationType
+            })
+
+            this.destination = destination.destination
+            this.destinationType = destination.destinationType
 
             this.amount = opts.amount
             this.currency = opts.currency
@@ -101,6 +107,8 @@ export class PeriodicPayment {
         if (json.periodicPayments)
             periodicPayment.payments = json.periodicPayments.map(pp => PeriodicPayment.fromJSON(pp)) 
 
+            periodicPayment.destination = DestinationOptions.fromJSON(periodicPayment.destination)
+
         return periodicPayment
 
     }
@@ -128,7 +136,7 @@ export class PeriodicPaymentOptions {
     schedule: string
     sourceWalletId?: string
 
-    destination: string | DestinationOptions[]
+    destination: string | DestinationOptions[] | GithubProjects
     destinationType?: PaymentDestination
 
     amount?: string
