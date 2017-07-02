@@ -1,4 +1,5 @@
 export * from './github-projects'
+export * from './create-organization-params'
 export * from './repo-params'
 export * from './transactions'
 export * from './wallets'
