@@ -133,6 +133,7 @@ export class IntraPeriodicPayment extends PeriodicPayment {
 
 export class PeriodicPaymentOptions {
 
+    organizationId: string
     schedule: string
     sourceWalletId?: string
 
@@ -156,7 +157,7 @@ export class PeriodicPaymentOptions {
 
         if (!(typeof opts === 'boolean'))
             opts.isPaused = false
-            
+
 
         //if (opts.sourceWalletId == undefined && )
         return { isValid: true }

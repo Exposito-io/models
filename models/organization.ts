@@ -49,6 +49,10 @@ export class OrganizationMember {
     static fromJSON(json: any): OrganizationMember {
         let member = new OrganizationMember()
         Object.assign(member, json)
+
+        if (json.userId instanceof ObjectID)
+            member.userId = json.userId.toHexString()
+            
         return member
     }
 }
