@@ -107,7 +107,13 @@ export class PeriodicPayment {
         if (json.periodicPayments)
             periodicPayment.payments = json.periodicPayments.map(pp => PeriodicPayment.fromJSON(pp)) 
 
-            periodicPayment.destination = DestinationOptions.fromJSON(periodicPayment.destination)
+        let destination = DestinationOptions.fromJSON({ 
+            destination: json.destination,
+            destinationType: json.destinationType
+        })
+
+        periodicPayment.destination = destination.destination
+        periodicPayment.destinationType = destination.destinationType
 
         return periodicPayment
 

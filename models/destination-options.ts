@@ -30,7 +30,7 @@ export class DestinationOptions {
     shares?: number
     destinationType?: PaymentDestination
 
-    static fromJSON(json: any) {
+    static fromJSON(json: any): DestinationOptions {
         if (typeof json.destination === 'string')
             return json
         else if (json.destination instanceof Array) {
