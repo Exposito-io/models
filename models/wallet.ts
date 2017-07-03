@@ -18,7 +18,7 @@ export abstract class Wallet {
         this.labels = new Set(opts.labels)
     }
 
-
+    id: string
     _id: ObjectID
     organizationId: string
     _periodicPaymentIds: ObjectID[] = []

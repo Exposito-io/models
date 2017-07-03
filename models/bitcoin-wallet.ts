@@ -4,7 +4,7 @@ import { Wallet, WalletType, WalletOptions } from './wallet'
 
 export class BitcoinWallet extends Wallet {
 
-    protected coreWallet: any
+    coreWallet: any
 
     constructor(opts: BitcoinWalletOptions) {
         super(opts)
@@ -34,6 +34,19 @@ export class BitcoinWallet extends Wallet {
         return wallet
     }
 
+    static fromParams(params: BitcoinWalletOptions): BitcoinWallet {
+        if (!BitcoinWalletOptions.validate(params))
+            throw 'Invalid params'
+
+        let wallet = new BitcoinWallet({
+            name: params.name,
+            labels: params.labels,
+            organizationId: params.organizationId,
+            coreWallet: params.coreWallet
+        })
+
+        return wallet
+    }
 
     static fromJSON(json: any): BitcoinWallet {
  
@@ -59,7 +72,12 @@ export class BitcoinWallet extends Wallet {
 
 
 export class BitcoinWalletOptions extends WalletOptions {
-    coreWallet: any
+    coreWallet?: any
+
+    static validate(params: BitcoinWalletOptions): boolean {
+        // TODO
+        return true
+    }
 }
 
 
