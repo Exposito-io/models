@@ -12,27 +12,29 @@ import { GithubProjects } from './api-params/github-projects'
 
 export class PeriodicPayment {
 
-    public _id: ObjectID
+    _id: ObjectID
 
-    public schedule: string
-    public sourceWalletId: ObjectID
+    organizationId: string
 
-    public destination: string | DestinationOptions[] | GithubProjects
-    public destinationType: PaymentDestination
+    schedule: string
+    sourceWalletId: ObjectID
 
-    public amount?: string
-    public currency?: string
+    destination: string | DestinationOptions[] | GithubProjects
+    destinationType: PaymentDestination
 
-    public amountFunction?: string
-    public amountFunctionFile: string
+    amount?: string
+    currency?: string
 
-    public payments?: IntraPeriodicPayment[]
+    amountFunction?: string
+    amountFunctionFile: string
 
-    public isPaused: boolean = false
-    public isDeleted: boolean = false
+    payments?: IntraPeriodicPayment[]
+
+    isPaused: boolean = false
+    isDeleted: boolean = false
 
 
-    public sourceWallet?: Wallet
+    sourceWallet?: Wallet
 
 
     constructor(opts?: PeriodicPaymentOptions) {
@@ -44,6 +46,7 @@ export class PeriodicPayment {
 
             this.schedule = opts.schedule
             this.sourceWalletId = new ObjectID(opts.sourceWalletId)
+            this.organizationId = opts.organizationId
 
             let destination = DestinationOptions.fromJSON({ 
                 destination: opts.destination,

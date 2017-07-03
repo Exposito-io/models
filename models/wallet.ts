@@ -14,18 +14,23 @@ export abstract class Wallet {
 
     constructor(opts: WalletOptions) {
         this.name = opts.name
+        this.organizationId = opts.organizationId
         this.labels = new Set(opts.labels)
     }
+
+
+    _id: ObjectID
+    organizationId: string
+    _periodicPaymentIds: ObjectID[] = []
+    type: WalletType = WalletType.UNKNOWN
+    name: string
+    labels: Set<string> = new Set<string>()    
 
     getId() { return this._id }
     getType() { return this.type }
     getName() { return this.name }
     getLabels() { return this.labels }
-    getUserId() { return this._userId }
 
-    setName(name: string) { this.name = name }
-    addLabel(label: string) { this.labels.add(label) }
-    removeLabel(label: string) { this.labels.delete(label) }
 
 
     isValid(): boolean {
@@ -52,7 +57,7 @@ export abstract class Wallet {
         wallet.type = <WalletType>json.type
         wallet.name = json.name
         wallet.labels = new Set(json.labels)
-        wallet._userId = json._userId
+        wallet.organizationId = json.organizationId
         wallet._periodicPaymentIds = json._periodicPaymentIds
 
         return wallet
@@ -71,12 +76,7 @@ export abstract class Wallet {
     }
 
 
-    protected _id: ObjectID
-    protected _userId: ObjectID
-    protected _periodicPaymentIds: ObjectID[] = []
-    protected type: WalletType = WalletType.UNKNOWN
-    protected name: string
-    protected labels: Set<string> = new Set<string>()
+
 
 }
 
@@ -85,6 +85,7 @@ export abstract class Wallet {
  */
 export class WalletOptions {
     name: string
+    organizationId: string
     labels: string[]
 }
 

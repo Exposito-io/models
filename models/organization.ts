@@ -50,9 +50,9 @@ export class OrganizationMember {
         let member = new OrganizationMember()
         Object.assign(member, json)
 
-        if (json.userId instanceof ObjectID)
+        if (json.userId.toHexString)
             member.userId = json.userId.toHexString()
-            
+
         return member
     }
 }
