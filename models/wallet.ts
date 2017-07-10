@@ -52,7 +52,7 @@ export abstract class Wallet {
     static fromJSON(json: any): Wallet {
         //if (Wallet.isJsonWalletValid(json)) {
         let wallet = WALLET_TYPES_MAP.get(json.type)(json)
-
+        
         wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
         wallet.type = <WalletType>json.type
         wallet.name = json.name
