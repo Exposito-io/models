@@ -10,5 +10,6 @@ export * from './models/payment-destination'
 export * from './models/repos'
 export * from './models/user'
 export * from './models/organization'
+export * from './models/hostings'
 
 export * from './models/api-params'
