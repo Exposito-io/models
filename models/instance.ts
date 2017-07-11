@@ -1,5 +1,6 @@
 import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
+import { ExpositoError, ErrorCode } from './exposito-error'
 
 /**
  * Represents a VM instance
@@ -15,17 +16,36 @@ export class Instance {
     hostingType: HostingType
 
 
-    fromParams(params: CreateInstanceParams) {
+    static fromParams(params: CreateInstanceParams) {
+        Object.assign(params, new CreateInstanceParams())
 
+        if (!CreateInstanceParams.validate(params))
+            throw new ExpositoError(ErrorCode.INVALID_PARAMS)
+
+        let instance = INSTANCE_TYPES_MAP.get(params.hostingType).fromParams(params)
+
+        instance.name = params.name
+        instance.labels = params.labels
+
+        instance.organizationId = params.organizationId
+        instance.hostingType = params.hostingType
+
+        return instance
     }
 
-    fromJSON(json: any): Instance {
 
-        let wallet = INSTANCE_TYPES_MAP.get(json.type)(json)
+    static fromJSON(json: any): Instance {
+
+        let instance = INSTANCE_TYPES_MAP.get(json.type).fromJSON(json)
         
-        copyMongoObject(wallet, json)
+        instance.id = json.id || json._id.toHexString ? json._id.toHexString() : json._id
+        instance.name = json.name
+        instance.labels = json.labels
 
-        return wallet
+        instance.organizationId = json.organizationId
+        instance.hostingType = json.hostingType
+
+        return instance
     }
 
 }
@@ -48,8 +68,9 @@ export class CreateInstanceParams {
 }
 
 
+import { GoogleInstance } from './hostings/google-cloud/google-instance'
 
-const INSTANCE_TYPES_MAP = new Map<HostingType, Function>([
-    [HostingType.GoogleCloud, BitcoinWallet.fromJSON]
+const INSTANCE_TYPES_MAP = new Map<HostingType, typeof GoogleInstance>([
+    [HostingType.GoogleCloud, GoogleInstance]
 ])
 

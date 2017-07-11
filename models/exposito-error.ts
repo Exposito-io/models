@@ -15,7 +15,8 @@ export enum ErrorCode {
     INVALID_WALLET = 1,
     INVALID_PERIODIC_PAYMENT_OPTS = 2,
     UNKNOWN_PAYMENT_REQUEST = 3,
-    INVALID_CREATE_PAYMENT_REQUEST = 4
+    INVALID_CREATE_PAYMENT_REQUEST = 4,
+    INVALID_PARAMS = 5
 }
 
 const defaultErrorMessages = new Map<ErrorCode, string>([
@@ -23,6 +24,7 @@ const defaultErrorMessages = new Map<ErrorCode, string>([
     [ErrorCode.INVALID_WALLET, 'Invalid wallet'],
     [ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS, 'Invalid PeriodicPaymentOptions object'],
     [ErrorCode.UNKNOWN_PAYMENT_REQUEST, 'Unknown payment request'],
-    [ErrorCode.INVALID_CREATE_PAYMENT_REQUEST, 'Invalid payment creation request']
+    [ErrorCode.INVALID_CREATE_PAYMENT_REQUEST, 'Invalid payment creation request'],
+    [ErrorCode.INVALID_PARAMS, 'Invalid parameters']
 ])
 
