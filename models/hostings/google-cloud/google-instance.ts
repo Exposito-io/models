@@ -47,3 +47,27 @@ export class CreateGoogleInstanceParams extends CreateInstanceParams {
         return true
     }
 }
+
+
+export class GoogleInstanceDisk {
+
+    boot: boolean
+    autoDelete: boolean
+    source: string
+
+}
+
+
+export class GoogleInstanceDiskParam {
+    initializeParams: GoogleInstanceDiskInitializeParams
+    boot: boolean
+    autoDelete: boolean
+    source?: string
+}
+
+export class GoogleInstanceDiskInitializeParams {
+    sourceImage: string
+    diskName: string
+    diskSizeGb: number
+    diskType: any
+}
