@@ -10,6 +10,7 @@ export class Instance {
 
     id: string
     name: string
+    description: string
     labels: string[]
 
     organizationId: string
@@ -25,6 +26,7 @@ export class Instance {
         let instance = INSTANCE_TYPES_MAP.get(params.hostingType).fromParams(params)
 
         instance.name = params.name
+        instance.description = params.description
         instance.labels = params.labels
 
         instance.organizationId = params.organizationId
@@ -40,6 +42,7 @@ export class Instance {
         
         instance.id = json.id || json._id.toHexString ? json._id.toHexString() : json._id
         instance.name = json.name
+        instance.description = json.description
         instance.labels = json.labels
 
         instance.organizationId = json.organizationId
@@ -55,6 +58,7 @@ export class Instance {
 // have one set of instance types for all the hosting providers
 export class CreateInstanceParams {
     name: string
+    description: string
     organizationId: string
     hostingType: HostingType = HostingType.GoogleCloud
     labels?: string[] = []

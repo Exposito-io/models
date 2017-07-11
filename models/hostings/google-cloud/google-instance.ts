@@ -14,7 +14,7 @@ export class GoogleInstance extends Instance {
 
         if (!CreateGoogleInstanceParams.validate(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
-
+        
         params = params as CreateGoogleInstanceParams
 
         let instance = new GoogleInstance()
