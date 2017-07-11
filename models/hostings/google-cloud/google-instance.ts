@@ -5,18 +5,22 @@ import { ExpositoError, ErrorCode } from '../../exposito-error'
 
 export class GoogleInstance extends Instance {
 
-    machinteType: string
+    machineType: string
     zone: string
 
 
-    static fromParams(params: CreateInstanceParams) {
+    static fromParams(params: CreateGoogleInstanceParams | any) {
         Object.assign(params, new CreateGoogleInstanceParams())
 
         if (!CreateGoogleInstanceParams.validate(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
-        let instance = new GoogleInstance()
+        params = params as CreateGoogleInstanceParams
 
+        let instance = new GoogleInstance()
+        instance.machineType = params.machineType
+        instance.zone = params.zone
+        
 
         return instance
     }
@@ -33,6 +37,10 @@ export class GoogleInstance extends Instance {
 
 
 export class CreateGoogleInstanceParams extends CreateInstanceParams {
+
+    zone: string = 'us-central1-c'
+    machineType: string
+
 
     static validate(params: CreateGoogleInstanceParams): boolean {
         // TODO
