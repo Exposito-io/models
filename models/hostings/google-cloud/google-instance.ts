@@ -14,13 +14,13 @@ export class GoogleInstance extends Instance {
 
         if (!CreateGoogleInstanceParams.validate(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
-        
+
         params = params as CreateGoogleInstanceParams
 
         let instance = new GoogleInstance()
         instance.machineType = params.machineType
         instance.zone = params.zone
-        
+
 
         return instance
     }
@@ -40,11 +40,14 @@ export class CreateGoogleInstanceParams extends CreateInstanceParams {
 
     zone: string = 'us-central1-c'
     machineType: string
+    disks: GoogleInstanceDiskParam[]
 
 
     static validate(params: CreateGoogleInstanceParams): boolean {
         // TODO
-        return true
+
+        return params.disks.every(GoogleInstanceDiskParam.validate)
+            && true
     }
 }
 
@@ -63,6 +66,11 @@ export class GoogleInstanceDiskParam {
     boot: boolean
     autoDelete: boolean
     source?: string
+
+    static validate(params: GoogleInstanceDiskParam) {
+        // TODO
+        return true
+    }
 }
 
 export class GoogleInstanceDiskInitializeParams {
@@ -70,4 +78,9 @@ export class GoogleInstanceDiskInitializeParams {
     diskName: string
     diskSizeGb: number
     diskType: any
+
+    static validate(params: GoogleInstanceDiskInitializeParams) {
+        // TODO
+        return true
+    }
 }
