@@ -5,6 +5,9 @@ import { ExpositoError, ErrorCode } from '../../exposito-error'
 
 export class GoogleInstance extends Instance {
 
+    // Google Compute instance name 
+    instanceName: string
+
     machineType: string
     zone: string
 
@@ -18,6 +21,8 @@ export class GoogleInstance extends Instance {
         params = params as CreateGoogleInstanceParams
 
         let instance = new GoogleInstance()
+
+        instance.instanceName = `i${params.organizationId}-${params.name}`
         instance.machineType = params.machineType
         instance.zone = params.zone
 

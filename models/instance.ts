@@ -38,8 +38,8 @@ export class Instance {
 
     static fromJSON(json: any): Instance {
 
-        let instance = INSTANCE_TYPES_MAP.get(json.type).fromJSON(json)
-        
+        let instance = INSTANCE_TYPES_MAP.get(json.hostingType).fromJSON(json)
+
         instance.id = json.id || json._id.toHexString ? json._id.toHexString() : json._id
         instance.name = json.name
         instance.description = json.description
