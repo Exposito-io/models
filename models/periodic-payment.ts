@@ -20,13 +20,13 @@ export class PeriodicPayment {
     sourceWalletId: ObjectID
 
     destination: string | DestinationOptions[] | GithubProjects
-    destinationType: PaymentDestination
+    destinationType?: PaymentDestination
 
     amount?: string
     currency?: string
 
     amountFunction?: string
-    amountFunctionFile: string
+    amountFunctionFile?: string
 
     payments?: IntraPeriodicPayment[]
 
@@ -65,7 +65,7 @@ export class PeriodicPayment {
             if (opts.payments)
                 this.payments = opts.payments.map(payment => new IntraPeriodicPayment)
 
-            this.isPaused = opts.isPaused
+            this.isPaused = opts.isPaused || false
 
             // Cleanup undefined attributes to prevent mongo from saving them
             Object.keys(this).forEach((key) => (this[key] == undefined) && delete this[key])
