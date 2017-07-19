@@ -1,9 +1,7 @@
-import { ObjectID } from 'mongodb'
-
 
 export class User {
 
-    _id: String|ObjectID
+    id: String
 
     constructor() {
 

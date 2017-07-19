@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb'
 import { CreateOrganizationParams } from './api-params/create-organization-params'
 import { copyMongoObject } from '../lib/tools'
 
