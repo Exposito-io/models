@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb'
 
 
 /**
@@ -15,11 +14,24 @@ export function validateObjectId(id: string): boolean {
 
 export function copyMongoObject(dest: any, src: any) {
     for(let key in src) {
-        if (key === '_id' && src[key] instanceof ObjectID)
+        if (key === '_id' && isMongoObjectId(src[key]))
             dest.id = src[key].toHexString()
         else
             dest[key] = src[key]
     }
+}
+
+/**
+ * Returns true if obj is an instance of 
+ * mongodb ObjectId. Can be called on frontend
+ * 
+ * @param obj 
+ */
+export function isMongoObjectId(obj: any): boolean {
+    return obj != null 
+        && obj.generationTime != null 
+        && obj.getTimestamp != null 
+        && obj.toHexString != null
 }
 
 export function convertStringToEnum<T>(enumString: string): number {
