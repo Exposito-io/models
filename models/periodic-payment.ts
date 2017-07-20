@@ -1,4 +1,4 @@
-import { ObjectID } from 'mongodb'
+//import { ObjectID } from 'mongodb'
 import { Wallet, WalletType } from './wallet'
 import { PaymentDestination } from './payment-destination'
 import { DestinationOptions } from './destination-options'
@@ -12,12 +12,12 @@ import { GithubProjects } from './api-params/github-projects'
 
 export class PeriodicPayment {
 
-    _id: ObjectID
+    _id: string
 
     organizationId: string
 
     schedule: string
-    sourceWalletId: ObjectID
+    sourceWalletId: string
 
     destination: string | DestinationOptions[] | GithubProjects
     destinationType?: PaymentDestination
@@ -45,7 +45,7 @@ export class PeriodicPayment {
                 throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS, validation.message)
 
             this.schedule = opts.schedule
-            this.sourceWalletId = new ObjectID(opts.sourceWalletId)
+            this.sourceWalletId = opts.sourceWalletId
             this.organizationId = opts.organizationId
 
             let destination = DestinationOptions.fromJSON({ 
@@ -105,7 +105,7 @@ export class PeriodicPayment {
         let periodicPayment = new PeriodicPayment()
         Object.assign(periodicPayment, json)
 
-        periodicPayment.sourceWalletId = new ObjectID(periodicPayment.sourceWalletId)
+        periodicPayment.sourceWalletId = periodicPayment.sourceWalletId
 
         if (json.periodicPayments)
             periodicPayment.payments = json.periodicPayments.map(pp => PeriodicPayment.fromJSON(pp)) 

@@ -5,7 +5,7 @@ import { PaymentDestination } from './payment-destination'
 import { Wallet } from './wallet'
 import * as tools from '../lib/tools'
 import { ExpositoError, ErrorCode } from './exposito-error'
-import { ObjectID } from 'mongodb'
+//import { ObjectID } from 'mongodb'
 import { Money } from './money'
 
 
@@ -36,7 +36,7 @@ export class FixedPayment extends PeriodicPayment {
 
             let periodicPayment = new FixedPayment()
             
-            periodicPayment.sourceWalletId = new ObjectID(opts.sourceWalletId)
+            periodicPayment.sourceWalletId = opts.sourceWalletId
             periodicPayment.destination = opts.destination
             periodicPayment.destinationType = opts.destinationType
             periodicPayment.schedule = opts.schedule
