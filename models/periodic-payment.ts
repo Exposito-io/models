@@ -6,6 +6,7 @@ import { Money, Currency } from './money'
 import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
 import { GithubProjects } from './api-params/github-projects'
+import { ObjectId } from '../lib/object-id'
 
 
 
@@ -14,9 +15,12 @@ export class PeriodicPayment {
 
     _id: string
 
+    @ObjectId
     organizationId: string
 
     schedule: string
+
+    @ObjectId
     sourceWalletId: string
 
     destination: string | DestinationOptions[] | GithubProjects
