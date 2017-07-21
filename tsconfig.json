@@ -21,7 +21,8 @@
         "types": ["node", "chai", "mocha"]
     },
     "include": [
-        "index.ts"
+        "index.ts",
+        "test"
     ],
     "exclude": [
         "node_modules"
