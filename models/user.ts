@@ -1,6 +1,7 @@
 
 export class User {
 
+    _id: any
     id: String
 
     constructor() {
