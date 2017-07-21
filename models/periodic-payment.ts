@@ -6,7 +6,7 @@ import { Money, Currency } from './money'
 import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
 import { GithubProjects } from './api-params/github-projects'
-import { ObjectId } from '../lib/object-id'
+import { ObjectId } from '../lib/objectid'
 
 
 
