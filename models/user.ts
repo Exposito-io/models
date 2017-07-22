@@ -1,8 +1,12 @@
+import { UserPreferences } from './user-preferences'
+
 
 export class User {
 
     _id: any
     id: String
+
+    userPreferences: UserPreferences
 
     constructor() {
 
