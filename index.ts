@@ -17,3 +17,4 @@ export * from './models/hostings'
 export * from './models/api-params'
 
 export * from './lib/tools'
+export * from './lib/objectid'
