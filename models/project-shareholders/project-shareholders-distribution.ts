@@ -1,5 +1,7 @@
 import { ObjectId } from '../../lib/objectid'
 import { ShareholderDescription } from './shareholder-description'
+import { InvitedShareholderDescription } from './invited-shareholder-description'
+import { GithubShareholdersDescription } from './github-shareholders-description'
 
 /**
  * Contains the basic share distribution for a specific project.
@@ -19,6 +21,6 @@ export class ProjectShareholdersDistribution {
     @ObjectId
     projectId: string
 
-    shareholders: ShareholderDescription[]
+    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
 }
