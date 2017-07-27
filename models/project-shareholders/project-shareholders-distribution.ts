@@ -31,8 +31,16 @@ export class ProjectShareholdersDistribution {
 
         let shareholders = new ProjectShareholdersDistribution()
         shareholders.projectId = params.projectId
-
-        // TODO: shareholders
+        shareholders.shareholders = params.shareholders.map(shareholder => {
+             if (ShareholderDescription.validate(shareholder))
+                return ShareholderDescription.fromParams(shareholder)
+            else if (InvitedShareholderDescription.validate(shareholder))
+                return InvitedShareholderDescription.fromParams(shareholder)
+            else if (GithubShareholdersDescription.validate(shareholder))
+                return GithubShareholdersDescription.fromParams(shareholder)
+            else
+                throw new ExpositoError(ErrorCode.INVALID_PARAMS)        
+        })
 
         return shareholders
     }
@@ -49,6 +57,16 @@ export class CreateProjectShareholdersDistributionParams {
 
     static validate(params: CreateProjectShareholdersDistributionParams) {
         // TODO
-        return true
+
+        if (!(params.shareholders instanceof Array))
+            return false
+
+        let validShareholders = params.shareholders.map(shareholder => {
+            return ShareholderDescription.validate(shareholder)
+                || InvitedShareholderDescription.validate(shareholder)
+                || GithubShareholdersDescription.validate(shareholder)
+        })
+
+        return validShareholders && true
     }
 }
