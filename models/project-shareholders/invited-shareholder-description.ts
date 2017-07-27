@@ -8,6 +8,9 @@ import { ObjectId } from '../../lib/objectid'
  */
 export class InvitedShareholderDescription {
 
+    /**
+     * Email of the invited user
+     */
     email: string
 
     /**
