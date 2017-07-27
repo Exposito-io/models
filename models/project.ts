@@ -2,6 +2,8 @@ import { CreateOrganizationParams } from './api-params/create-organization-param
 import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
+import { ShareholderDescription, InvitedShareholderDescription, GithubShareholdersDescription } from './project-shareholders'
+
 
 export class Project {
 
@@ -75,6 +77,8 @@ export class CreateProjectParams {
     githubProjects: string[]
 
     members: ProjectMemberParams[]
+
+    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
 
 
