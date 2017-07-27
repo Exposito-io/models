@@ -1,4 +1,5 @@
 import { CreateOrganizationParams } from './api-params/create-organization-params'
+import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
 
@@ -8,6 +9,10 @@ export class Project {
 
     name: string
     description: string
+
+    hosting: HostingType
+
+    githubProjects: string[] = []
 
     members: ProjectMember[]
 
@@ -43,7 +48,7 @@ export class Project {
 
 
 export class ProjectMember {
-    
+
     @ObjectId
     userId: string
 
@@ -65,6 +70,9 @@ export class CreateProjectParams {
 
     name: string
     description: string
+    hosting: HostingType
+
+    githubProjects: string[]
 
     members: ProjectMemberParams[]
 

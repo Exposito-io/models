@@ -7,7 +7,7 @@ export class UserPreferences {
     @ObjectId
     selectedProjectId: string
 
-    selectedProject?
+    selectedProject?: Project
     
 
 }
