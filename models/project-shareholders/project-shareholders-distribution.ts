@@ -24,3 +24,18 @@ export class ProjectShareholdersDistribution {
     shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
 }
+
+export class CreateProjectShareholdersDistributionParams {
+
+    projectId: string
+
+    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
+
+
+    static validate(params: CreateProjectShareholdersDistributionParams) {
+        // TODO
+
+        
+        return true
+    }
+}

@@ -1,6 +1,7 @@
 import { ObjectId } from '../../lib/objectid'
 import { WalletAddress } from '../wallet-address'
 
+
 /**
  * Project shareholder with his allocated
  * number of shares. Exposito will try to fetch
