@@ -2,6 +2,7 @@ import { ObjectId } from '../../lib/objectid'
 import { ShareholderDescription } from './shareholder-description'
 import { InvitedShareholderDescription } from './invited-shareholder-description'
 import { GithubShareholdersDescription } from './github-shareholders-description'
+import { ExpositoError, ErrorCode } from '../exposito-error'
 
 /**
  * Contains the basic share distribution for a specific project.
@@ -23,7 +24,21 @@ export class ProjectShareholdersDistribution {
 
     shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
+
+    static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectShareholdersDistribution {
+        if (!CreateProjectShareholdersDistributionParams.validate(params))
+            throw new ExpositoError(ErrorCode.INVALID_PARAMS)
+
+        let shareholders = new ProjectShareholdersDistribution()
+        shareholders.projectId = params.projectId
+
+        // TODO: shareholders
+
+        return shareholders
+    }
+
 }
+
 
 export class CreateProjectShareholdersDistributionParams {
 
@@ -34,8 +49,6 @@ export class CreateProjectShareholdersDistributionParams {
 
     static validate(params: CreateProjectShareholdersDistributionParams) {
         // TODO
-
-        
         return true
     }
 }
