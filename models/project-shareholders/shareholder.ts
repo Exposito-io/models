@@ -1,4 +1,5 @@
 import { ObjectId } from '../../lib/objectid'
+import { WalletAddress } from '../wallet-address'
 
 /**
  * Project shareholder with his allocated
@@ -18,7 +19,7 @@ export class Shareholder {
 
     email?: string
 
-    avatarUrl?: string
+    picture?: string
 
     /**
      * Github username of the shareholder
@@ -29,6 +30,12 @@ export class Shareholder {
      * Ethereum public address of the shareholder
      */
     ethereumAddress?: string
+
+    /**
+     * Accepted payment methods for the shareholder
+     */
+    walletAddresses: WalletAddress[] = []
+
 
     /**
      * Number of shares allocated to the
