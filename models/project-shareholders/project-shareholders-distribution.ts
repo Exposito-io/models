@@ -61,7 +61,7 @@ export class CreateProjectShareholdersDistributionParams {
         if (!(params.shareholders instanceof Array))
             return false
 
-        let validShareholders = params.shareholders.map(shareholder => {
+        let validShareholders = params.shareholders.every(shareholder => {
             return ShareholderDescription.validate(shareholder)
                 || InvitedShareholderDescription.validate(shareholder)
                 || GithubShareholdersDescription.validate(shareholder)
