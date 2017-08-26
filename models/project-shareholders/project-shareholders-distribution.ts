@@ -39,7 +39,7 @@ export class ProjectShareholdersDistribution {
             else if (GithubShareholdersDescription.validate(shareholder))
                 return GithubShareholdersDescription.fromParams(shareholder)
             else
-                throw new ExpositoError(ErrorCode.INVALID_PARAMS)        
+                throw new ExpositoError(ErrorCode.INVALID_PARAMS)
         })
 
         return shareholders
@@ -52,7 +52,7 @@ export class CreateProjectShareholdersDistributionParams {
 
     projectId: string
 
-    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
+    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[] = []
 
 
     static validate(params: CreateProjectShareholdersDistributionParams) {

@@ -3,7 +3,7 @@ import { ExpositoError, ErrorCode } from '../exposito-error'
 
 
 /**
- * Project shareholder represented by 
+ * Project shareholder represented by
  * an exposito user
  */
 export class ShareholderDescription {
@@ -12,7 +12,7 @@ export class ShareholderDescription {
     userId: string
 
     /**
-     * Number of shares allocated to this 
+     * Number of shares allocated to this
      * user
      */
     shares: string
@@ -27,11 +27,12 @@ export class ShareholderDescription {
         shareholder.shares = params.shares
 
         return shareholder
-    }    
+    }
 
 
     static validate(params: ShareholderDescription | any) {
         // TODO
         return params.userId != null && params.shares != null
     }
+
 }
