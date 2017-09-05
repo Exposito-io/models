@@ -8,6 +8,7 @@ export class RepoStats {
 export class RepoAuthor {
     name: string
     email: string
+    image: string
     linesOfCode: string
     fileCount: string
     availablePaymentMethods: { paymentType: any, destination: string }[]
