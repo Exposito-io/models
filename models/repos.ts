@@ -1,7 +1,10 @@
 export class RepoStats {
+    owner: string
+    repo: string
     authors: RepoAuthor[]
-    totalLinesOfCode: string
-    totalFileCount: string
+    totalLinesOfCode: number
+    totalFileCount: number
+    lastCommit: string
 }
 
 
