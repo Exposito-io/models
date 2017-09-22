@@ -1,3 +1,4 @@
+import { ObjectId } from '../lib/objectid'
 
 export enum WalletType {
     UNKNOWN = 0,
@@ -12,17 +13,20 @@ export abstract class Wallet {
 
     constructor(opts: WalletOptions) {
         this.name = opts.name
-        this.organizationId = opts.organizationId
-        this.labels = new Set(opts.labels)
+        this.projectId = opts.projectId
+        this.labels = Array.from(new Set(opts.labels || []))
     }
 
     id: string
     _id: string
-    organizationId: string
+
+    // TODO: convertStringsToObjectIds does not work with inheritance
+    @ObjectId projectId: string
+
     _periodicPaymentIds: string[] = []
     type: WalletType = WalletType.UNKNOWN
     name: string
-    labels: Set<string> = new Set<string>()    
+    labels: string[] = []
 
     getId() { return this._id }
     getType() { return this.type }
@@ -54,8 +58,8 @@ export abstract class Wallet {
         //wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
         wallet.type = <WalletType>json.type
         wallet.name = json.name
-        wallet.labels = new Set(json.labels)
-        wallet.organizationId = json.organizationId
+        wallet.labels = Array.from(new Set(json.labels))
+        wallet.projectId = json.projectId
         wallet._periodicPaymentIds = json._periodicPaymentIds
 
         return wallet
@@ -82,7 +86,7 @@ export abstract class Wallet {
  */
 export class WalletOptions {
     name: string
-    organizationId: string
+    projectId: string
     labels: string[]
 }
 

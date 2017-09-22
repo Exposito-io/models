@@ -16,7 +16,7 @@ export class PeriodicPayment {
     _id: string
 
     @ObjectId
-    organizationId: string
+    projectId: string
 
     schedule: string
 
@@ -50,7 +50,7 @@ export class PeriodicPayment {
 
             this.schedule = opts.schedule
             this.sourceWalletId = opts.sourceWalletId
-            this.organizationId = opts.organizationId
+            this.projectId = opts.projectId
 
             let destination = DestinationOptions.fromJSON({ 
                 destination: opts.destination,
@@ -146,7 +146,7 @@ export class IntraPeriodicPayment extends PeriodicPayment {
 
 export class PeriodicPaymentOptions {
 
-    organizationId: string
+    @ObjectId projectId: string
     schedule: string
     sourceWalletId?: string
 

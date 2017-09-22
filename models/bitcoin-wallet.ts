@@ -11,6 +11,7 @@ export class BitcoinWallet extends Wallet {
 
         this.coreWallet = opts.coreWallet
         this.type = WalletType.BITCOIN
+        this.projectId = opts.projectId
     }
 
     getCoreWallet() { return this.coreWallet }
@@ -41,7 +42,7 @@ export class BitcoinWallet extends Wallet {
         let wallet = new BitcoinWallet({
             name: params.name,
             labels: params.labels,
-            organizationId: params.organizationId,
+            projectId: params.projectId,
             coreWallet: params.coreWallet
         })
 
@@ -53,7 +54,7 @@ export class BitcoinWallet extends Wallet {
         let bitcoinWallet = new BitcoinWallet({
             name: json.name,
             labels: json.labels,
-            organizationId: json.organizationId,
+            projectId: json.projectId,
             //coreWallet: BitcoinCoreWallet.fromObj(json.bitcoinWallet)
             coreWallet: json.coreWallet
         })   

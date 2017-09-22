@@ -1,5 +1,5 @@
 export class GetPeriodicPaymentFilters {
-    organizationId: string
+    projectId: string
 
     static validate(filters: GetPeriodicPaymentFilters): boolean {
         //TODO
