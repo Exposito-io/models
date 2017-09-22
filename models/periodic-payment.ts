@@ -18,6 +18,8 @@ export class PeriodicPayment {
     @ObjectId
     projectId: string
 
+    description: string
+
     schedule: string
 
     @ObjectId
@@ -56,6 +58,8 @@ export class PeriodicPayment {
                 destination: opts.destination,
                 destinationType: opts.destinationType
             })
+
+            this.description = opts.description
 
             this.destination = destination.destination
             this.destinationType = destination.destinationType
@@ -152,6 +156,8 @@ export class PeriodicPaymentOptions {
 
     destination: string | DestinationOptions[] | GithubProjects
     destinationType?: PaymentDestination
+
+    description: string
 
     amount?: string
     currency?: string
