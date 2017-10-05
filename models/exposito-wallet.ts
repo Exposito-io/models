@@ -4,16 +4,16 @@ import { Wallet, WalletType, WalletOptions } from './wallet'
 
 export class ExpositoWallet extends Wallet {
 
-    coreWallet: any
 
     constructor(opts: ExpositoWalletOptions) {
         super(opts)
 
         this.type = WalletType.EXPOSITO
         this.projectId = opts.projectId
+        this.amount = '0'
+        this.currency = 'BTC'
     }
 
-    getCoreWallet() { return this.coreWallet }
 
     isValid(): boolean {
         // TODO mcormier
@@ -48,6 +48,9 @@ export class ExpositoWallet extends Wallet {
             labels: json.labels,
             projectId: json.projectId
         })   
+
+        expositoWallet.amount = json.amount
+        expositoWallet.currency = json.currency
 
         return expositoWallet
     }
