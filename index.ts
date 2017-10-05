@@ -1,6 +1,7 @@
 export * from './models/exposito-error'
 export * from './models/wallet'
 export * from './models/bitcoin-wallet'
+export * from './models/exposito-wallet'
 export * from './models/instance'
 export * from './models/hosting-type'
 export * from './models/money'

@@ -1,9 +1,9 @@
 import { ObjectId } from '../lib/objectid'
 
 export enum WalletType {
-    UNKNOWN = 0,
-    BITCOIN = 1,
-    ETHEREUM = 2
+    BITCOIN = 'BITCOIN',
+    ETHEREUM = 'ETHEREUM',
+    EXPOSITO = 'EXPOSITO'
 }
 
 
@@ -24,14 +24,17 @@ export abstract class Wallet {
     @ObjectId projectId: string
 
     _periodicPaymentIds: string[] = []
-    type: WalletType = WalletType.UNKNOWN
+    type: WalletType
+
     name: string
+    description: string
     labels: string[] = []
 
-    getId() { return this._id }
-    getType() { return this.type }
-    getName() { return this.name }
-    getLabels() { return this.labels }
+    amount: string
+    currency: string
+
+
+
 
 
 
@@ -42,7 +45,7 @@ export abstract class Wallet {
 
     toJSON(): any {
         let walletJson = Object.assign({}, <any>this)
-        walletJson.labels = Array.from(this.getLabels())
+        walletJson.labels = Array.from(this.labels)
         return walletJson
     }
 
