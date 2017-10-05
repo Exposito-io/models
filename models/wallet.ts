@@ -96,8 +96,10 @@ export class WalletOptions {
 
 
 import { BitcoinWallet } from './bitcoin-wallet'
+import { ExpositoWallet } from './exposito-wallet'
 
 const WALLET_TYPES_MAP = new Map<WalletType, Function>([
-    [WalletType.BITCOIN, BitcoinWallet.fromJSON]
+    [WalletType.BITCOIN, BitcoinWallet.fromJSON],
+    [WalletType.EXPOSITO, ExpositoWallet.fromJSON]
 ])
 
