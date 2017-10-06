@@ -9,6 +9,11 @@ export class Transaction {
     currency: string
     note?: string
     creationDate: Date
+    // TODO: Rename to confirmationDate
     endDate: Date
     status: number
+
+    static fromJSON(json: any) : Transaction {
+        return Object.assign(new Transaction(), json)
+    }
 }
