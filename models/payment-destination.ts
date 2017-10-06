@@ -7,7 +7,8 @@
  */
 export enum PaymentDestination {
     UNKNOWN = 0,
-    EXPOSITO_WALLET = 1, // Exposito Wallet
+    EXPOSITO_WALLET = 1, 
     BITCOIN_ADDRESS = 2,
-    ETHEREUM_ADDRESS = 3
+    ETHEREUM_ADDRESS = 3,
+    SQUARE_PAYMENT = 4
 }

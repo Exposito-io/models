@@ -4,6 +4,7 @@ import { Money } from '../money'
 
 export class CreatePaymentRequest {
     sourceWalletId: string
+    sourceType?: PaymentDestination
     destination: string
     destinationType: PaymentDestination
     amount: string
