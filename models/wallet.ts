@@ -59,6 +59,7 @@ export abstract class Wallet {
         let wallet = WALLET_TYPES_MAP.get(json.type)(json)
         
         //wallet._id = typeof json._id === 'string' ? new ObjectID(json._id) : json._id
+        wallet.id = json._id || json.id
         wallet.type = <WalletType>json.type
         wallet.name = json.name
         wallet.labels = Array.from(new Set(json.labels))
