@@ -4,7 +4,10 @@ import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
 import { ShareholderDescription, InvitedShareholderDescription, GithubShareholdersDescription } from './project-shareholders'
 
-
+/**
+ * Represents a project in Exposito
+ * 
+ */
 export class Project {
 
     id: string
