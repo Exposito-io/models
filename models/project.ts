@@ -87,7 +87,11 @@ export class CreateProjectParams {
 
     static validate(param: CreateProjectParams): boolean {
         // TODO
-        return true
+        return param instanceof Object
+            && typeof param.name === 'string'
+            && param.name != null
+            && typeof param.description === 'string'
+            && param.description != null
     }
 }
 
