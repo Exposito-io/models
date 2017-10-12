@@ -41,6 +41,7 @@ export class BitcoinWallet extends Wallet {
 
         let wallet = new BitcoinWallet({
             name: params.name,
+            description: params.description,
             labels: params.labels,
             projectId: params.projectId,
             coreWallet: params.coreWallet
@@ -53,6 +54,7 @@ export class BitcoinWallet extends Wallet {
  
         let bitcoinWallet = new BitcoinWallet({
             name: json.name,
+            description: json.description,
             labels: json.labels,
             projectId: json.projectId,
             //coreWallet: BitcoinCoreWallet.fromObj(json.bitcoinWallet)

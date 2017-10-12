@@ -13,12 +13,12 @@ export abstract class Wallet {
 
     constructor(opts: WalletOptions) {
         this.name = opts.name
+        this.description = opts.description
         this.projectId = opts.projectId
         this.labels = Array.from(new Set(opts.labels || []))
     }
 
     id: string
-    _id: string
 
     // TODO: convertStringsToObjectIds does not work with inheritance
     @ObjectId projectId: string
@@ -62,6 +62,7 @@ export abstract class Wallet {
         wallet.id = json._id || json.id
         wallet.type = <WalletType>json.type
         wallet.name = json.name
+        wallet.description = json.description
         wallet.labels = Array.from(new Set(json.labels))
         wallet.projectId = json.projectId
         wallet._periodicPaymentIds = json._periodicPaymentIds
@@ -90,6 +91,7 @@ export abstract class Wallet {
  */
 export class WalletOptions {
     name: string
+    description: string
     projectId: string
     labels: string[]
 }

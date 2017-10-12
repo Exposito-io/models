@@ -34,6 +34,7 @@ export class ExpositoWallet extends Wallet {
 
         let wallet = new ExpositoWallet({
             name: params.name,
+            description: params.description,
             labels: params.labels,
             projectId: params.projectId
         })
@@ -45,6 +46,7 @@ export class ExpositoWallet extends Wallet {
  
         let expositoWallet = new ExpositoWallet({
             name: json.name,
+            description: json.description,
             labels: json.labels,
             projectId: json.projectId
         })   
