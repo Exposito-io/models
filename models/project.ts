@@ -4,7 +4,10 @@ import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
 import { ShareholderDescription, InvitedShareholderDescription, GithubShareholdersDescription } from './project-shareholders'
 
-
+/**
+ * Represents a project in Exposito
+ * 
+ */
 export class Project {
 
     id: string
@@ -84,7 +87,11 @@ export class CreateProjectParams {
 
     static validate(param: CreateProjectParams): boolean {
         // TODO
-        return true
+        return param instanceof Object
+            && typeof param.name === 'string'
+            && param.name != null
+            && typeof param.description === 'string'
+            && param.description != null
     }
 }
 
