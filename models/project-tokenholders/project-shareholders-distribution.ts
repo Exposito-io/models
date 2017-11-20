@@ -2,6 +2,7 @@ import { ObjectId } from '../../lib/objectid'
 import { ShareholderDescription } from './shareholder-description'
 import { InvitedShareholderDescription } from './invited-shareholder-description'
 import { GithubShareholdersDescription } from './github-shareholders-description'
+import { ProjectTokenholdersSnapshot } from './project-shareholders-snapshot'
 import { ExpositoError, ErrorCode } from '../exposito-error'
 
 /**

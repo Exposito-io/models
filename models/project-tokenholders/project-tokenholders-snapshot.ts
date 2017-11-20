@@ -7,7 +7,7 @@
   * represents a project shareholders distribution at a specific moment 
   * in time.
   */
-export class ProjectShareholdersSnapshot {
+export class ProjectTokenholdersSnapshot {
     
     id: string
 
