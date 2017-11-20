@@ -12,35 +12,25 @@ import { WalletAddress } from '../wallet-address'
  */
 export class Shareholder {
 
-    /**
-     * Exposito user id of the shareholder
-     */
+    /** Exposito user id of the shareholder */
     @ObjectId userId?: string
 
-    email?: string
-
-    picture?: string
-
-    /**
-     * Github username of the shareholder
-     */
+    /** Github username of the shareholder */
     githubUsername?: string
 
-    /**
-     * Ethereum public address of the shareholder
-     */
+
+    name?: string
+    email?: string
+    picture?: string
+
+    /** Ethereum public address of the shareholder */
     ethereumAddress?: string
 
-    /**
-     * Accepted payment methods for the shareholder
-     */
+    /** Accepted payment methods for the shareholder */
     walletAddresses: WalletAddress[] = []
 
 
-    /**
-     * Number of shares allocated to the
-     * shareholder
-     */
+    /** Number of shares allocated to the shareholder */
     shares: string
 
 }

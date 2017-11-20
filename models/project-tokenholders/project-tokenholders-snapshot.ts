@@ -1,6 +1,5 @@
  import { ObjectId } from '../../lib/objectid'
  import { Shareholder } from './shareholder'
- import { UserInfo } from './user-info'
  
  /** 
   * Since lines of code for projects varies over time, the shares
@@ -24,7 +23,5 @@ export class ProjectTokenholdersSnapshot {
      * respective number of shares
      */
     shareholders: Shareholder[]
-
-    userInfo?: UserInfo
 
 }

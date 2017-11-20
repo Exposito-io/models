@@ -4,7 +4,6 @@ export * from './shareholder-description'
 export * from './invited-shareholder-description'
 export * from './shareholder'
 export * from './project-tokenholders-snapshot'
-export * from './user-info'
 
 
 
