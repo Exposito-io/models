@@ -15,8 +15,7 @@ export class Shareholder {
     /**
      * Exposito user id of the shareholder
      */
-    @ObjectId
-    userId?: string
+    @ObjectId userId?: string
 
     email?: string
 

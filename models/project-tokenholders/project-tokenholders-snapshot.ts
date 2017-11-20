@@ -11,15 +11,10 @@ export class ProjectTokenholdersSnapshot {
     
     id: string
 
-    /**
-     * Exposito project's Id
-     */
-    @ObjectId
-    projectId: string
+    /** Exposito project's Id */
+    @ObjectId projectId: string
 
-    /**
-     * Moment of the snapshot
-     */
+    /** Moment of the snapshot */
     date: Date
 
     /**
