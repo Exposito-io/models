@@ -18,10 +18,10 @@ export class ProjectTokenholdersSnapshot {
     date: Date
 
     /**
-     * All shareholders of the project
+     * All tokenholders of the project
      * at the specific moment, with their
      * respective number of shares
      */
-    shareholders: Shareholder[]
+    tokenholders: Shareholder[]
 
 }

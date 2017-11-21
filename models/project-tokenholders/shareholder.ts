@@ -18,17 +18,15 @@ export class Shareholder {
     /** Github username of the shareholder */
     githubUsername?: string
 
-
     name?: string
     email?: string
-    picture?: string
+    picture?: string 
 
     /** Ethereum public address of the shareholder */
     ethereumAddress?: string
 
     /** Accepted payment methods for the shareholder */
     walletAddresses: WalletAddress[] = []
-
 
     /** Number of shares allocated to the shareholder */
     shares: string
