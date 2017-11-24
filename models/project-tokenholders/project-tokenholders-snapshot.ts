@@ -1,5 +1,5 @@
  import { ObjectId } from '../../lib/objectid'
- import { Shareholder } from './shareholder'
+ import { Tokenholder } from './shareholder'
  
  /** 
   * Since lines of code for projects varies over time, the shares
@@ -22,6 +22,6 @@ export class ProjectTokenholdersSnapshot {
      * at the specific moment, with their
      * respective number of shares
      */
-    tokenholders: Shareholder[]
+    tokenholders: Tokenholder[]
 
 }

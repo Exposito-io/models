@@ -10,7 +10,7 @@ import { WalletAddress } from '../wallet-address'
  * who is not yet registered or a github developer
  * who has only added his payment address in a gist.
  */
-export class Shareholder {
+export class Tokenholder {
 
     /** Exposito user id of the shareholder */
     @ObjectId userId?: string
