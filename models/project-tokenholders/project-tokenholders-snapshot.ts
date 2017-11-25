@@ -1,5 +1,5 @@
  import { ObjectId } from '../../lib/objectid'
- import { Tokenholder } from './shareholder'
+ import { Tokenholder } from './tokenholder'
  
  /** 
   * Since lines of code for projects varies over time, the shares

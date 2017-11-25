@@ -7,6 +7,7 @@ import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
 import { GithubProjects } from './api-params/github-projects'
 import { ObjectId } from '../lib/objectid'
+import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
 
 
 
@@ -15,22 +16,31 @@ export class PeriodicPayment {
 
     _id: string
 
-    @ObjectId
-    projectId: string
+    /** Exposito project associated with the PeriodicTransfer */
+    @ObjectId projectId: string
 
+    /** Description of the PeriodicTransfer */
     description: string
 
+    /** Cron expression */
     schedule: string
 
-    @ObjectId
-    sourceWalletId: string
+    /** Source wallet id */
+    @ObjectId sourceWalletId: string
 
-    destination: string | DestinationOptions[] | GithubProjects
+    destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
     destinationType?: PaymentDestination
 
     amount?: string
     currency?: string
 
+    /** Is amount the percentage of the total wallet sum */
+    isAmountPct = false
+
+    /** 
+     * To enable more complex transfers, a function can 
+     * determine the amount 
+     */
     amountFunction?: string
     amountFunctionFile?: string
 

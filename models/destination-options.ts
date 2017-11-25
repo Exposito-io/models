@@ -1,8 +1,9 @@
 import { PaymentDestination } from './payment-destination'
 import { GithubProjects } from './api-params/github-projects'
+import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
 
 export class DestinationOptions {
-    destination: string | DestinationOptions[] | GithubProjects
+    destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
 
     /**
      * Used in an array of DestinationOptions object

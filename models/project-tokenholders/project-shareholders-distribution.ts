@@ -17,11 +17,8 @@ export class ProjectShareholdersDistribution {
 
     id: string
 
-    /**
-     * Exposito project's Id
-     */
-    @ObjectId
-    projectId: string
+    /** Exposito project's Id */
+    @ObjectId projectId: string
 
     shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
