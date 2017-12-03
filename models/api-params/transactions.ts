@@ -2,6 +2,8 @@ import { PaymentDestination } from '../payment-destination'
 import * as tools from '../../lib/tools'
 import { Money } from '../money'
 
+
+// TODO: Rename to FundTransferRequest
 export class CreatePaymentRequest {
     sourceWalletId: string
     sourceType?: PaymentDestination

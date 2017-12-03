@@ -1,9 +1,22 @@
 import { PaymentDestination } from './payment-destination'
 import { GithubProjects } from './api-params/github-projects'
 import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
+import { interface as Interface, string, union, Integer } from 'io-ts'
+
+export enum DestinationOptionsType {
+    Wallet = 'Wallet',
+    DestinationOptions = 'DestinationOptions',
+    GithubProjects = 'GithubProjects',
+    ProjectTokenholdersSnapshot = 'ProjectTokenholdersSnapshot',
+    ProjectShareholdersDistribution = 'ProjectShareholdersDistribution'
+}
+
+
 
 export class DestinationOptions {
     destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
+
+    
 
     /**
      * Used in an array of DestinationOptions object
@@ -51,4 +64,17 @@ export class DestinationOptions {
     static validate(dest: any) {
         // TODO
     }
+
+    static runtimeType() {
+        return Interface({
+            destination: union([ string, GithubProjects.runtimeType() ]),
+            shares: union([ string, undefined ]),
+            destinationType: union([ Integer, undefined ])
+        })
+    }
+}
+
+
+export function getDestinationOptionsType(destinationOptions: DestinationOptions) {
+
 }

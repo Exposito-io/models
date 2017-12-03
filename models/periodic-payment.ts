@@ -28,13 +28,14 @@ export class PeriodicPayment {
     /** Source wallet id */
     @ObjectId sourceWalletId: string
 
+    // TODO: Simplify structure
     destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
     destinationType?: PaymentDestination
 
     amount?: string
     currency?: string
 
-    /** Is amount the percentage of the total wallet sum */
+    /** Is amount in percentage  */
     isAmountPct = false
 
     /** 
