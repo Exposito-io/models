@@ -3,18 +3,10 @@ import { GithubProjects } from './api-params/github-projects'
 import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
 import { interface as Interface, string, union, Integer } from 'io-ts'
 
-export enum DestinationOptionsType {
-    Wallet = 'Wallet',
-    DestinationOptions = 'DestinationOptions',
-    GithubProjects = 'GithubProjects',
-    ProjectTokenholdersSnapshot = 'ProjectTokenholdersSnapshot',
-    ProjectShareholdersDistribution = 'ProjectShareholdersDistribution'
-}
-
 
 
 export class DestinationOptions {
-    destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
+    destination: string | DestinationOptions[] | GithubProjects | ProjectShareholdersDistribution
 
     
 

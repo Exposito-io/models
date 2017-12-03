@@ -1,6 +1,7 @@
  import { ObjectId } from '../../lib/objectid'
  import { Tokenholder } from './tokenholder'
  
+ 
  /** 
   * Since lines of code for projects varies over time, the shares
   * distribution is not fixed either. A ProjectShareholdersSnapshot

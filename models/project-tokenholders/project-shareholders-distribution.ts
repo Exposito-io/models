@@ -4,6 +4,8 @@ import { InvitedShareholderDescription } from './invited-shareholder-description
 import { GithubShareholdersDescription } from './github-shareholders-description'
 import { ProjectTokenholdersSnapshot } from './project-tokenholders-snapshot'
 import { ExpositoError, ErrorCode } from '../exposito-error'
+import { interface as Interface, string, union, array } from 'io-ts'
+
 
 /**
  * Contains the basic share distribution for a specific project.
@@ -66,5 +68,13 @@ export class CreateProjectShareholdersDistributionParams {
         })
 
         return validShareholders && true
+    }
+
+
+    static runtimeType() {
+        return Interface({
+            shareholders: array(union([])),
+            projectId: string
+        })
     }
 }

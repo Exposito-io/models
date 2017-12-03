@@ -1,5 +1,6 @@
 import { ObjectId } from '../../lib/objectid'
 import { ExpositoError, ErrorCode } from '../exposito-error'
+import { interface as Interface, string, union, array } from 'io-ts'
 
 
 /**
@@ -10,15 +11,10 @@ import { ExpositoError, ErrorCode } from '../exposito-error'
  */
 export class InvitedShareholderDescription {
 
-    /**
-     * Email of the invited user
-     */
+    /** Email of the invited user */
     email: string
 
-    /**
-     * Number of shares allocated to this 
-     * user
-     */
+    /** Shares of the amount allocated to this user */
     shares: string
 
 
@@ -33,8 +29,16 @@ export class InvitedShareholderDescription {
         return invitedShareholder
     }
 
-    static validate(params: InvitedShareholderDescription | any): boolean {
-        // TODO
-        return params.email != null && params.shares != null
+    /** @deprecated */
+    static validate(params: any) {
+        return InvitedShareholderDescription.runtimeType().is(params)
+    }
+
+
+    static runtimeType() {
+        return Interface({
+            email: string,
+            shares: string
+        })
     }
 }

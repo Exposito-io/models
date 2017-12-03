@@ -1,5 +1,6 @@
 import { ObjectId } from '../../lib/objectid'
 import { ExpositoError, ErrorCode } from '../exposito-error'
+import { interface as Interface, string, union, array } from 'io-ts'
 
 
 /**
@@ -8,13 +9,10 @@ import { ExpositoError, ErrorCode } from '../exposito-error'
  */
 export class ShareholderDescription {
 
-    @ObjectId
-    userId: string
+    /** Exposito user id */
+    @ObjectId userId: string
 
-    /**
-     * Number of shares allocated to this
-     * user
-     */
+    /** Number of shares allocated to this user */
     shares: string
 
 
@@ -29,10 +27,17 @@ export class ShareholderDescription {
         return shareholder
     }
 
+    /** @deprecated */
+    static validate(params: any) {
+        return ShareholderDescription.runtimeType().is(params)
+    }
 
-    static validate(params: ShareholderDescription | any) {
-        // TODO
-        return params.userId != null && params.shares != null
+
+    static runtimeType() {
+        return Interface({
+            userId: string,
+            shares: string
+        })
     }
 
 }

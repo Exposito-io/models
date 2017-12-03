@@ -1,4 +1,5 @@
 import { ExpositoError, ErrorCode } from '../exposito-error'
+import { interface as Interface, string, union, array } from 'io-ts'
 
 export class GithubShareholdersDescription {
     
@@ -9,8 +10,7 @@ export class GithubShareholdersDescription {
     githubProject: string
 
     /**
-     * Number of shares allocated to this 
-     * project
+     * Shares of the PeriodicTransfer amount allocated to this project
      */
     shares: string
 
@@ -26,9 +26,21 @@ export class GithubShareholdersDescription {
         return githubShareholders
     }
 
-    static validate(params: GithubShareholdersDescription | any): boolean {
-        // TODO
-        return params.githubProject != null && params.shares != null
+    /** 
+     * @deprecated Use GithubShareholdersDescription.runtimeType().is() instead
+     */
+    static validate(params: any) {
+        return GithubShareholdersDescription.runtimeType().is(params)
+    }
+
+
+    static runtimeType() {
+        return Interface({
+            githubProject: string,
+            shares: string
+        })
+
+        // TODO: shares must be a string representing a number
     }
 
 }
