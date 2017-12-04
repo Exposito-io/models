@@ -55,25 +55,19 @@ export class CreateProjectShareholdersDistributionParams {
     shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[] = []
 
 
-    static validate(params: CreateProjectShareholdersDistributionParams) {
-        // TODO
-
-        if (!(params.shareholders instanceof Array))
-            return false
-
-        let validShareholders = params.shareholders.every(shareholder => {
-            return ShareholderDescription.validate(shareholder)
-                || InvitedShareholderDescription.validate(shareholder)
-                || GithubShareholdersDescription.validate(shareholder)
-        })
-
-        return validShareholders && true
+    /** @deprecated */
+    static validate(params: any) {
+        return CreateProjectShareholdersDistributionParams.runtimeType().is(params)
     }
 
 
     static runtimeType() {
         return Interface({
-            shareholders: array(union([])),
+            shareholders: array(union([
+                ShareholderDescription.runtimeType(),
+                InvitedShareholderDescription.runtimeType(),
+                GithubShareholdersDescription.runtimeType()
+            ])),
             projectId: string
         })
     }
