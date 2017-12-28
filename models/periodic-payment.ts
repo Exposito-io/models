@@ -2,6 +2,7 @@
 import { Wallet, WalletType } from './wallet'
 import { PaymentDestination } from './payment-destination'
 import { DestinationOptions } from './destination-options'
+import { UserDestination } from './transfers'
 import { Money, Currency } from './money'
 import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
@@ -29,7 +30,7 @@ export class PeriodicPayment {
     @ObjectId sourceWalletId: string
 
     // TODO: Simplify structure
-    destination: string | DestinationOptions[] | GithubProjects | ProjectTokenholdersSnapshot | ProjectShareholdersDistribution
+    destination: string | UserDestination | GithubProjects | ProjectShareholdersDistribution | DestinationOptions[]
     destinationType?: PaymentDestination
 
     amount?: string
