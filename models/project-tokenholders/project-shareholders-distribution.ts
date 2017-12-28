@@ -26,23 +26,35 @@ export class ProjectShareholdersDistribution {
 
 
     static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectShareholdersDistribution {
-        if (!CreateProjectShareholdersDistributionParams.validate(params))
+        if (!CreateProjectShareholdersDistributionParams.runtimeType().is(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
         let shareholders = new ProjectShareholdersDistribution()
         shareholders.projectId = params.projectId
         shareholders.shareholders = params.shareholders.map(shareholder => {
-             if (ShareholderDescription.validate(shareholder))
+             if (ShareholderDescription.runtimeType().is(shareholder))
                 return ShareholderDescription.fromParams(shareholder)
-            else if (InvitedShareholderDescription.validate(shareholder))
+            else if (InvitedShareholderDescription.runtimeType().is(shareholder))
                 return InvitedShareholderDescription.fromParams(shareholder)
-            else if (GithubShareholdersDescription.validate(shareholder))
+            else if (GithubShareholdersDescription.runtimeType().is(shareholder))
                 return GithubShareholdersDescription.fromParams(shareholder)
             else
                 throw new ExpositoError(ErrorCode.INVALID_PARAMS)
         })
 
         return shareholders
+    }
+
+    static runtimeType() {
+        return Interface({
+            id: string,
+            projectId: string,
+            shareholders: array(union([
+                ShareholderDescription.runtimeType(),
+                InvitedShareholderDescription.runtimeType(),
+                GithubShareholdersDescription.runtimeType()
+            ]))
+        })
     }
 
 }
