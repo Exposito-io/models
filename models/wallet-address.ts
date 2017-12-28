@@ -1,6 +1,15 @@
+import { interface as Interface, string, Integer } from 'io-ts'
+
 export class WalletAddress {
     address: string
     addressType: WalletAddressType
+
+    static runtimeType() {
+        return Interface({
+            address: string,
+            addressType: Integer
+        })
+    }    
 }
 
 
