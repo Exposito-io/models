@@ -1,4 +1,5 @@
 import { UserPreferences } from './user-preferences'
+import { WalletAddress } from './wallet-address'
 
 
 export class User {
@@ -10,6 +11,8 @@ export class User {
     name: string
     email: string
     image: string
+
+    defaultWallet: WalletAddress
 
     userPreferences: UserPreferences
 
