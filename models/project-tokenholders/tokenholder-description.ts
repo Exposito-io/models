@@ -4,10 +4,10 @@ import { interface as Interface, string, union, array } from 'io-ts'
 
 
 /**
- * Project shareholder represented by
+ * Project tokenholder represented by
  * an exposito user
  */
-export class ShareholderDescription {
+export class TokenholderDescription {
 
     /** Exposito user id */
     @ObjectId userId: string
@@ -16,11 +16,11 @@ export class ShareholderDescription {
     shares: string
 
 
-    static fromParams(params: ShareholderDescription | any): ShareholderDescription {
-        if (!ShareholderDescription.validate(params))
+    static fromParams(params: TokenholderDescription | any): TokenholderDescription {
+        if (!TokenholderDescription.validate(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
-        let shareholder = new ShareholderDescription()
+        let shareholder = new TokenholderDescription()
         shareholder.userId = params.userId
         shareholder.shares = params.shares
 
@@ -29,7 +29,7 @@ export class ShareholderDescription {
 
     /** @deprecated */
     static validate(params: any) {
-        return ShareholderDescription.runtimeType().is(params)
+        return TokenholderDescription.runtimeType().is(params)
     }
 
 
