@@ -3,6 +3,9 @@ import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
 import { ProjectTokenholdersDistribution, TokenholderDescription, InvitedTokenholderDescription, GithubTokenholdersDescription } from './project-tokenholders'
+import { interface as Interface, string, union, array } from 'io-ts'
+import { ProjectTokenholdersSnapshot } from './project-tokenholders/project-tokenholders-snapshot';
+
 
 /**
  * Exposito project
@@ -26,6 +29,8 @@ export class Project {
      *  will be managed in a smart contract in the near future
      */
     tokenDistribution?: ProjectTokenholdersDistribution
+
+    lastTokenholdersSnapshot?: ProjectTokenholdersSnapshot
 
     members: ProjectMember[]
 
@@ -57,6 +62,15 @@ export class Project {
 
         return org
     }
+
+
+    static runtimeType() {
+        return Interface({
+            id: string,
+            name: string,
+            description: string
+        })
+    }    
 }
 
 
