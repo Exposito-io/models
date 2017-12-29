@@ -27,8 +27,8 @@ export class ProjectTokenholdersDistribution {
     lastSnapshot?: ProjectTokenholdersSnapshot
 
 
-    static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectTokenholdersDistribution {
-        if (!CreateProjectShareholdersDistributionParams.runtimeType().is(params))
+    static fromParams(params: CreateProjectTokenholdersDistributionParams): ProjectTokenholdersDistribution {
+        if (!CreateProjectTokenholdersDistributionParams.runtimeType().is(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
         let shareholders = new ProjectTokenholdersDistribution()
@@ -62,7 +62,7 @@ export class ProjectTokenholdersDistribution {
 }
 
 
-export class CreateProjectShareholdersDistributionParams {
+export class CreateProjectTokenholdersDistributionParams {
 
     projectId: string
 
@@ -71,7 +71,7 @@ export class CreateProjectShareholdersDistributionParams {
 
     /** @deprecated */
     static validate(params: any) {
-        return CreateProjectShareholdersDistributionParams.runtimeType().is(params)
+        return CreateProjectTokenholdersDistributionParams.runtimeType().is(params)
     }
 
 

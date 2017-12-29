@@ -2,10 +2,10 @@ import { CreateOrganizationParams } from './api-params/create-organization-param
 import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
-import { TokenholderDescription, InvitedTokenholderDescription, GithubTokenholdersDescription } from './project-tokenholders'
+import { ProjectTokenholdersDistribution, TokenholderDescription, InvitedTokenholderDescription, GithubTokenholdersDescription } from './project-tokenholders'
 
 /**
- * Represents a project in Exposito
+ * Exposito project
  * 
  */
 export class Project {
@@ -15,9 +15,17 @@ export class Project {
     name: string
     description: string
 
+    // TODO: Remove
     hosting: HostingType
 
     githubProjects: string[] = []
+
+    /**
+     *  Tokenholder distribution for the project.
+     *  Token distribution is stored in a separate mongodb collection since it
+     *  will be managed in a smart contract in the near future
+     */
+    tokenDistribution?: ProjectTokenholdersDistribution
 
     members: ProjectMember[]
 
