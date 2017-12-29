@@ -24,6 +24,8 @@ export class ProjectShareholdersDistribution {
 
     shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
+    lastSnapshot?: ProjectTokenholdersSnapshot
+
 
     static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectShareholdersDistribution {
         if (!CreateProjectShareholdersDistributionParams.runtimeType().is(params))
