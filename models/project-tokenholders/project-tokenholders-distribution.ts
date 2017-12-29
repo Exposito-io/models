@@ -1,7 +1,7 @@
 import { ObjectId } from '../../lib/objectid'
 import { TokenholderDescription } from './tokenholder-description'
 import { InvitedTokenholderDescription } from './invited-tokenholder-description'
-import { GithubShareholdersDescription } from './github-shareholders-description'
+import { GithubTokenholdersDescription } from './github-tokenholders-description'
 import { ProjectTokenholdersSnapshot } from './project-tokenholders-snapshot'
 import { ExpositoError, ErrorCode } from '../exposito-error'
 import { interface as Interface, string, union, array } from 'io-ts'
@@ -22,7 +22,7 @@ export class ProjectTokenholdersDistribution {
     /** Exposito project's Id */
     @ObjectId projectId: string
 
-    tokenholders: (TokenholderDescription | InvitedTokenholderDescription | GithubShareholdersDescription)[]
+    tokenholders: (TokenholderDescription | InvitedTokenholderDescription | GithubTokenholdersDescription)[]
 
     lastSnapshot?: ProjectTokenholdersSnapshot
 
@@ -38,8 +38,8 @@ export class ProjectTokenholdersDistribution {
                 return TokenholderDescription.fromParams(shareholder)
             else if (InvitedTokenholderDescription.runtimeType().is(shareholder))
                 return InvitedTokenholderDescription.fromParams(shareholder)
-            else if (GithubShareholdersDescription.runtimeType().is(shareholder))
-                return GithubShareholdersDescription.fromParams(shareholder)
+            else if (GithubTokenholdersDescription.runtimeType().is(shareholder))
+                return GithubTokenholdersDescription.fromParams(shareholder)
             else
                 throw new ExpositoError(ErrorCode.INVALID_PARAMS)
         })
@@ -54,7 +54,7 @@ export class ProjectTokenholdersDistribution {
             shareholders: array(union([
                 TokenholderDescription.runtimeType(),
                 InvitedTokenholderDescription.runtimeType(),
-                GithubShareholdersDescription.runtimeType()
+                GithubTokenholdersDescription.runtimeType()
             ]))
         })
     }
@@ -66,7 +66,7 @@ export class CreateProjectShareholdersDistributionParams {
 
     projectId: string
 
-    shareholders: (TokenholderDescription | InvitedTokenholderDescription | GithubShareholdersDescription)[] = []
+    shareholders: (TokenholderDescription | InvitedTokenholderDescription | GithubTokenholdersDescription)[] = []
 
 
     /** @deprecated */
@@ -80,7 +80,7 @@ export class CreateProjectShareholdersDistributionParams {
             shareholders: array(union([
                 TokenholderDescription.runtimeType(),
                 InvitedTokenholderDescription.runtimeType(),
-                GithubShareholdersDescription.runtimeType()
+                GithubTokenholdersDescription.runtimeType()
             ])),
             projectId: string
         })

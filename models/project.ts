@@ -2,7 +2,7 @@ import { CreateOrganizationParams } from './api-params/create-organization-param
 import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
-import { TokenholderDescription, InvitedTokenholderDescription, GithubShareholdersDescription } from './project-tokenholders'
+import { TokenholderDescription, InvitedTokenholderDescription, GithubTokenholdersDescription } from './project-tokenholders'
 
 /**
  * Represents a project in Exposito
@@ -81,7 +81,7 @@ export class CreateProjectParams {
 
     members: ProjectMemberParams[]
 
-    shareholders: (TokenholderDescription | InvitedTokenholderDescription | GithubShareholdersDescription)[]
+    shareholders: (TokenholderDescription | InvitedTokenholderDescription | GithubTokenholdersDescription)[]
 
 
 
