@@ -9,7 +9,7 @@ import { interface as Interface, string, union, array } from 'io-ts'
  * Will be converted to a {@link ShareholderDescription}
  * object once registered.
  */
-export class InvitedShareholderDescription {
+export class InvitedTokenholderDescription {
 
     /** Email of the invited user */
     email: string
@@ -18,11 +18,11 @@ export class InvitedShareholderDescription {
     shares: string
 
 
-    static fromParams(params: InvitedShareholderDescription | any): InvitedShareholderDescription {
-        if (!InvitedShareholderDescription.validate(params))
+    static fromParams(params: InvitedTokenholderDescription | any): InvitedTokenholderDescription {
+        if (!InvitedTokenholderDescription.validate(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
-        let invitedShareholder = new InvitedShareholderDescription()
+        let invitedShareholder = new InvitedTokenholderDescription()
         invitedShareholder.email = params.email
         invitedShareholder.shares = params.shares
 
@@ -31,7 +31,7 @@ export class InvitedShareholderDescription {
 
     /** @deprecated */
     static validate(params: any) {
-        return InvitedShareholderDescription.runtimeType().is(params)
+        return InvitedTokenholderDescription.runtimeType().is(params)
     }
 
 

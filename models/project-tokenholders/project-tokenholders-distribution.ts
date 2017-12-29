@@ -1,6 +1,6 @@
 import { ObjectId } from '../../lib/objectid'
 import { ShareholderDescription } from './shareholder-description'
-import { InvitedShareholderDescription } from './invited-shareholder-description'
+import { InvitedTokenholderDescription } from './invited-tokenholder-description'
 import { GithubShareholdersDescription } from './github-shareholders-description'
 import { ProjectTokenholdersSnapshot } from './project-tokenholders-snapshot'
 import { ExpositoError, ErrorCode } from '../exposito-error'
@@ -22,7 +22,7 @@ export class ProjectTokenholdersDistribution {
     /** Exposito project's Id */
     @ObjectId projectId: string
 
-    tokenholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
+    tokenholders: (ShareholderDescription | InvitedTokenholderDescription | GithubShareholdersDescription)[]
 
     lastSnapshot?: ProjectTokenholdersSnapshot
 
@@ -36,8 +36,8 @@ export class ProjectTokenholdersDistribution {
         shareholders.tokenholders = params.shareholders.map(shareholder => {
              if (ShareholderDescription.runtimeType().is(shareholder))
                 return ShareholderDescription.fromParams(shareholder)
-            else if (InvitedShareholderDescription.runtimeType().is(shareholder))
-                return InvitedShareholderDescription.fromParams(shareholder)
+            else if (InvitedTokenholderDescription.runtimeType().is(shareholder))
+                return InvitedTokenholderDescription.fromParams(shareholder)
             else if (GithubShareholdersDescription.runtimeType().is(shareholder))
                 return GithubShareholdersDescription.fromParams(shareholder)
             else
@@ -53,7 +53,7 @@ export class ProjectTokenholdersDistribution {
             projectId: string,
             shareholders: array(union([
                 ShareholderDescription.runtimeType(),
-                InvitedShareholderDescription.runtimeType(),
+                InvitedTokenholderDescription.runtimeType(),
                 GithubShareholdersDescription.runtimeType()
             ]))
         })
@@ -66,7 +66,7 @@ export class CreateProjectShareholdersDistributionParams {
 
     projectId: string
 
-    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[] = []
+    shareholders: (ShareholderDescription | InvitedTokenholderDescription | GithubShareholdersDescription)[] = []
 
 
     /** @deprecated */
@@ -79,7 +79,7 @@ export class CreateProjectShareholdersDistributionParams {
         return Interface({
             shareholders: array(union([
                 ShareholderDescription.runtimeType(),
-                InvitedShareholderDescription.runtimeType(),
+                InvitedTokenholderDescription.runtimeType(),
                 GithubShareholdersDescription.runtimeType()
             ])),
             projectId: string
