@@ -12,28 +12,28 @@ import { interface as Interface, string, union, array } from 'io-ts'
  * May contain Exposito users and/or github projects.
  * 
  * Since lines of code for projects varies over time, the shares 
- * distribution is not fixed either. See {@link ProjectShareholdersSnapshot}
+ * distribution is not fixed either. See {@link ProjectTokenholdersSnapshot}
  * for project shareholders distribution at a specific moment in time.
  */
-export class ProjectShareholdersDistribution {
+export class ProjectTokenholdersDistribution {
 
     id: string
 
     /** Exposito project's Id */
     @ObjectId projectId: string
 
-    shareholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
+    tokenholders: (ShareholderDescription | InvitedShareholderDescription | GithubShareholdersDescription)[]
 
     lastSnapshot?: ProjectTokenholdersSnapshot
 
 
-    static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectShareholdersDistribution {
+    static fromParams(params: CreateProjectShareholdersDistributionParams): ProjectTokenholdersDistribution {
         if (!CreateProjectShareholdersDistributionParams.runtimeType().is(params))
             throw new ExpositoError(ErrorCode.INVALID_PARAMS)
 
-        let shareholders = new ProjectShareholdersDistribution()
+        let shareholders = new ProjectTokenholdersDistribution()
         shareholders.projectId = params.projectId
-        shareholders.shareholders = params.shareholders.map(shareholder => {
+        shareholders.tokenholders = params.shareholders.map(shareholder => {
              if (ShareholderDescription.runtimeType().is(shareholder))
                 return ShareholderDescription.fromParams(shareholder)
             else if (InvitedShareholderDescription.runtimeType().is(shareholder))

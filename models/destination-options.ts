@@ -1,13 +1,13 @@
 import { PaymentDestination } from './payment-destination'
 import { GithubProjects } from './api-params/github-projects'
-import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
+import { ProjectTokenholdersSnapshot, ProjectTokenholdersDistribution } from './project-tokenholders'
 import { UserDestination } from './transfers'
 import { interface as Interface, string, union, Integer } from 'io-ts'
 
 
 
 export class DestinationOptions {
-    destination: string | UserDestination | GithubProjects | ProjectShareholdersDistribution | DestinationOptions[]
+    destination: string | UserDestination | GithubProjects | ProjectTokenholdersDistribution | DestinationOptions[]
 
     
 

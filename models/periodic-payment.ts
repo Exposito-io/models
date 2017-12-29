@@ -8,7 +8,7 @@ import { ValidationResults } from './validation-results'
 import { ExpositoError, ErrorCode } from './exposito-error'
 import { GithubProjects } from './api-params/github-projects'
 import { ObjectId } from '../lib/objectid'
-import { ProjectTokenholdersSnapshot, ProjectShareholdersDistribution } from './project-tokenholders'
+import { ProjectTokenholdersSnapshot, ProjectTokenholdersDistribution } from './project-tokenholders'
 
 
 
@@ -30,7 +30,7 @@ export class PeriodicPayment {
     @ObjectId sourceWalletId: string
 
     // TODO: Simplify structure
-    destination: string | UserDestination | GithubProjects | ProjectShareholdersDistribution | DestinationOptions[]
+    destination: string | UserDestination | GithubProjects | ProjectTokenholdersDistribution | DestinationOptions[]
     destinationType?: PaymentDestination
 
     amount?: string
