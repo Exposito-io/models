@@ -45,6 +45,16 @@ export class DestinationOptions {
                 destination: json.destination.map(DestinationOptions.fromJSON)
             }
         }
+        else if (UserDestination.runtimeType().is(json.destination)) {
+            return {
+                destination: json.destination
+            }
+        }
+        else if (ProjectTokenholdersDistribution.runtimeType().is(json.destination)) {
+            return {
+                destination: Object.assign({} as ProjectTokenholdersDistribution, json.destination)
+            }
+        }
         else if (json.destination.githubProjects) {
             return {
                 destination: new GithubProjects(json.destination)

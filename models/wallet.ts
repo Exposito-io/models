@@ -23,6 +23,7 @@ export abstract class Wallet {
     // TODO: convertStringsToObjectIds does not work with inheritance
     @ObjectId projectId: string
 
+    // TODO: Rename
     _periodicPaymentIds: string[] = []
     type: WalletType
 

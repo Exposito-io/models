@@ -91,7 +91,7 @@ export class PeriodicPayment {
             this.isPaused = opts.isPaused || false
 
             // Cleanup undefined attributes to prevent mongo from saving them
-            Object.keys(this).forEach((key) => (this[key] == undefined) && delete this[key])
+            //Object.keys(this).forEach((key) => (this[key] == undefined) && delete this[key])
         }
         else if (opts !== undefined)
             throw new ExpositoError(ErrorCode.INVALID_PERIODIC_PAYMENT_OPTS)
@@ -127,8 +127,6 @@ export class PeriodicPayment {
 
         let periodicPayment = new PeriodicPayment()
         Object.assign(periodicPayment, json)
-
-        periodicPayment.sourceWalletId = periodicPayment.sourceWalletId
 
         if (json.periodicPayments)
             periodicPayment.payments = json.periodicPayments.map(pp => PeriodicPayment.fromJSON(pp)) 
