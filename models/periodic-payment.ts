@@ -9,6 +9,7 @@ import { ExpositoError, ErrorCode } from './exposito-error'
 import { GithubProjects } from './api-params/github-projects'
 import { ObjectId } from '../lib/objectid'
 import { ProjectTokenholdersSnapshot, ProjectTokenholdersDistribution } from './project-tokenholders'
+import { interface as Interface, string, union, array, any } from 'io-ts'
 
 
 
@@ -16,6 +17,8 @@ import { ProjectTokenholdersSnapshot, ProjectTokenholdersDistribution } from './
 export class PeriodicPayment {
 
     _id: string
+
+    id: string
 
     /** Exposito project associated with the PeriodicTransfer */
     @ObjectId projectId: string
@@ -164,9 +167,11 @@ export class PeriodicPaymentOptions {
 
     @ObjectId projectId: string
     schedule: string
+
+    // Optional?
     sourceWalletId?: string
 
-    destination: string | DestinationOptions[] | GithubProjects
+    destination: string | UserDestination | GithubProjects | DestinationOptions[]
     destinationType?: PaymentDestination
 
     description: string
@@ -197,6 +202,22 @@ export class PeriodicPaymentOptions {
     private static validateSchedule(schedule: string) {
         return typeof schedule === 'string'
     }
+
+
+    static runtimeType() {
+        return Interface({
+            projectId: string,
+            description: string,
+            schedule: string,
+            destination: union([
+                string, 
+                UserDestination.runtimeType(), 
+                GithubProjects.runtimeType(),
+                ProjectTokenholdersDistribution.runtimeType(),
+                array(DestinationOptions.runtimeType()) 
+            ])
+        })
+    }       
 }
 
 export enum PeriodicPaymentType {
