@@ -3,7 +3,7 @@ import { HostingType } from './hosting-type'
 import { copyMongoObject } from '../lib/tools'
 import { ObjectId } from '../lib/objectid'
 import { ProjectTokenholdersDistribution, TokenholderDescription, InvitedTokenholderDescription, GithubTokenholdersDescription } from './project-tokenholders'
-import { interface as Interface, string, union, array } from 'io-ts'
+import { interface as Interface, string, union, array, any } from 'io-ts'
 import { ProjectTokenholdersSnapshot } from './project-tokenholders/project-tokenholders-snapshot';
 
 
@@ -66,9 +66,9 @@ export class Project {
 
     static runtimeType() {
         return Interface({
-            id: string,
             name: string,
-            description: string
+            description: string,
+            //members: array(any)
         })
     }    
 }

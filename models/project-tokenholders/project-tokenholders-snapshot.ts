@@ -1,5 +1,6 @@
  import { ObjectId } from '../../lib/objectid'
  import { Tokenholder } from './tokenholder'
+ import { Project } from '../project'
  
  
  /** 
@@ -25,4 +26,8 @@ export class ProjectTokenholdersSnapshot {
      */
     tokenholders: Tokenholder[]
 
+    project?: Project
+
 }
+
+
