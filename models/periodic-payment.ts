@@ -169,7 +169,7 @@ export class PeriodicPaymentOptions {
     // Optional?
     sourceWalletId?: string
 
-    destination: string | UserDestination | GithubProjects | DestinationOptions[]
+    destination: string | UserDestination | GithubProjects | ProjectTokenholdersDistribution | DestinationOptions[]
     destinationType?: PaymentDestination
 
     description: string

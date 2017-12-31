@@ -49,13 +49,14 @@ export class ProjectTokenholdersDistribution {
 
     static runtimeType() {
         return Interface({
-            id: string,
+            //id: string,
             projectId: string,
+            /*
             shareholders: array(union([
                 TokenholderDescription.runtimeType(),
                 InvitedTokenholderDescription.runtimeType(),
                 GithubTokenholdersDescription.runtimeType()
-            ]))
+            ]))*/
         })
     }
 
