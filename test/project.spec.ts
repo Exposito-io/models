@@ -18,7 +18,6 @@ describe('Project', () => {
                 name: undefined,
                 description: '',
                 githubProjects: [],
-                hosting: HostingType.Aws,
                 members: [],
                 shareholders: []
             })

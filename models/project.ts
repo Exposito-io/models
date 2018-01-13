@@ -7,19 +7,13 @@ import { interface as Interface, string, union, array, any } from 'io-ts'
 import { ProjectTokenholdersSnapshot } from './project-tokenholders/project-tokenholders-snapshot';
 
 
-/**
- * Exposito project
- * 
- */
+/** Exposito project */
 export class Project {
 
     id: string
 
     name: string
     description: string
-
-    // TODO: Remove
-    hosting: HostingType
 
     githubProjects: string[] = []
 
@@ -76,8 +70,7 @@ export class Project {
 
 export class ProjectMember {
 
-    @ObjectId
-    userId: string
+    @ObjectId userId: string
 
     roles: string[] = []
 
@@ -97,7 +90,6 @@ export class CreateProjectParams {
 
     name: string
     description: string
-    hosting: HostingType
 
     githubProjects: string[]
 
