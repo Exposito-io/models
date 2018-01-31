@@ -15,6 +15,8 @@ export class Project {
     name: string
     description: string
 
+    contractAddress: string
+
     githubProjects: string[] = []
 
     /**
